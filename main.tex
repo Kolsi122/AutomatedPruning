@@ -30,8 +30,6 @@
 
 \makeatother
 
-
-
 \date{}
 
 %\usepackage{natbib}
@@ -47,12 +45,13 @@
 \author[FERI]{Simon Kolmanič}\corref{CoresAuth}
 \ead{simon.kolmanic@um.si}
 \author[FERI]{Damjan Strnad}
-\author[FERI]{Štefan Kohek}
+\author[FERI]{\v{S}tefan Kohek}
 \author[PURDUE]{Bedrich Benes}
 \author[PURDUE]{Peter Hirst}
-\author[FERI]{Borut Žalik}
+\author[FERI]{Borut v{Z}alik}
 
-\address[FERI]{Faculty of Electrical Engineering and Computer Science, University of Maribor, Koroška cesta 46, 2000 Maribor, Slovenia}
+\address[FERI]{%Faculty of Electrical Engineering and Computer Science,\\
+University of Maribor, Koroška cesta 46, 2000 Maribor, Slovenia}
 \address[PURDUE]{Purdue University West Lafayette, IN 47906, USA}
 
 
@@ -120,9 +119,9 @@ the plants are in a dormant state, and in both cases, a set of
 predefined pruning rules controls the pruning.
 
 One of the bottlenecks of the current models is the 3D tree model
-reconstruction and many approaches have been introduced \cite{xie_tree_2016, zhang_data-driven_2014,livny_automatic_2010}. By
+reconstruction and many approaches have been introduced~\cite{,livny_automatic_2010,xie_tree_2016,zhang_data-driven_2014}. By
 applying the tree pruning rules on the generated tree 3D model the
-surplus branches are identified that have to be removed \cite{akbar_novel_2016,elfiky_automation_2015,medeiros_modeling_2017}.
+surplus branches are identified that have to be removed~\cite{akbar_novel_2016,elfiky_automation_2015,medeiros_modeling_2017}.
 These rules aim to increase the light input into the tree crown and thus
 to improve the tree health \cite{simon_does_2006} and, in effect, fruit quality
 \cite{bastias_light_2012}. The overall fruit quality is additionally enhanced by removing
@@ -161,8 +160,8 @@ concept of self-organization \cite{palubicki_self-organizing_2009}.
 \subsection{Tree Growth Model}
 
 A tree model used in our approach is represented as a hierarchy of
-modules as shown in Fig. 1a that is a common approach used in many plant
-simulators such as \cite{palubicki_self-organizing_2009,prusinkiewicz_development_1988,de_reffye_plant_1988,pirk_plastic_2012,stava_inverse_2014}. The point at which one or more
+modules as shown in Fig.~\ref{fig:my_figure1}~a) that is a common approach used in many plant
+simulators such as \cite{de_reffye_plant_1988,palubicki_self-organizing_2009,pirk_plastic_2012,prusinkiewicz_development_1988,stava_inverse_2014}. The point at which one or more
 leaves are attached to the stem is called a node. The part of the stem
 between two nodes is an internode. The growth is controlled by apical
 meristem that is a region of dividing cells that responds to gravity and
@@ -175,9 +174,8 @@ sequence of metamers created at single spurt forms a shoot. The shoot
 axis is produced by the terminal bud which is located at the end of the
 shoot.
 
-Our approach uses the previously developed framework called EduAPPLE
-\cite{kohek_eduapple:_2015}, where the tree growth is driven by buds' illuminations
-\cite{mech_visual_1996,benes_efficient_1996,benes_visual_1997} and a competitive process for growth resources \cite{palubicki_self-organizing_2009,arvo_modeling_1988,alsweis_modeling_2005,runions_modeling_2007}, which leads to the self-organizing structure of the tree. The
+Our approach uses the previously developed framework called EduAPPLE~\cite{kohek_eduapple:_2015}, 
+where the tree growth is driven by buds' illuminations~\cite{benes_efficient_1996,benes_visual_1997,mech_visual_1996} and a competitive process for growth resources \cite{alsweis_modeling_2005,arvo_modeling_1988,palubicki_self-organizing_2009,runions_modeling_2007}, which leads to the self-organizing structure of the tree. The
 tree attempts to maximize its branch mass by growth and light intake by
 growth. Buds with higher irradiance produce new shoots that fill the
 empty space. Buds in lower irradiance produce quickly growing shoots
@@ -189,27 +187,27 @@ algorithms exists. Although inner reflection can be considered \cite{soler_effic
 the algorithms are usually time consuming, and the indirect light does
 not contribute significantly to growth, because major light intake is
 given by the direct lighting. A faster way is to use only the direct
-irradiance \cite{pirk_plastic_2012,mech_visual_1996,benes_efficient_1996,benes_visual_1997}. The tree cast shadow on itself and thus
-forming a shadow space of the tree as shown in Fig.~1b. The shadow
+irradiance~\cite{benes_visual_1997,benes_efficient_1996,mech_visual_1996,pirk_plastic_2012}. 
+The tree cast shadow on itself and thus
+forming a shadow space of the tree as shown in Fig.~\ref{fig:my_figure1}~b). The shadow
 density is highest at the trunk; thus no leaves/shoots can grow from the
 dormant buds positioned there. The key contribution of pruning is in
 improving the illumination of the inner parts of the tree. When the
 lighting conditions around the stem improve after removing some
 branches, dormant buds can reactivate and start to produce new shoots.
-
-\begin{figure}
+\begin{figure}[hbt]
     \centering
     \includegraphics[width=4.5in]{figs/image1.jpg}
     \caption{a) Plant modules of a self-organizing tree growth
 model, b) shadow space of a tree in used tree growth model from \cite{kohek_eduapple:_2015}.}
-    \label{fig:my_label}
+    \label{fig:my_figure1}
 \end{figure}
 
 
 \subsection{Illumination}
 
 We calculated the inner shading by using the algorithm from \cite{palubicki_self-organizing_2009}
-that was later extended in \cite{strnad_novel_2017,pirk_plastic_2012,stava_inverse_2014}. The light distribution
+that was later extended in~\cite{pirk_plastic_2012,stava_inverse_2014,strnad_novel_2017}. The light distribution
 inside the tree crown is calculated from the illuminated leaves that are
 sources of a conical shadow volume. We calculate the bud illumination.
 Suppose, we have a bud inside one of the shadow volumes of one of the
@@ -217,29 +215,24 @@ neighbors. Let \(d_{y}\) be the bud's vertical distance from the volume
 apex and \(d_{x,z}\) its horizontal distance from the volume axis, then
 the received shadow, originating from a given shadow volume is
 calculated by \cite{strnad_novel_2017}:
-
 \begin{equation}
 \Delta s = \left\{ \begin{matrix}
 \text{ab}^{- 0.8\left( d_{y} + d_{x,y} \right)}, & \mathrm{\text{if}}\ d_{x,y} < d_{y} \\
 0, & \mathrm{otherwise} \\
-\end{matrix}, \right.\    
+\end{matrix}, \right\},
 \end{equation}
-
 where \(a\) \textgreater{} 0 and \(b\)\textgreater{} 0 are model
 parameters from \cite{palubicki_self-organizing_2009} and were set to \(a = 0.05\) and \(b = 2\).
 Total irradiance of a given bud is then calculated by:
-
 \begin{equation}
   Q = max\begin{Bmatrix}
 1 - s, & 0 \\
 \end{Bmatrix},  
 \end{equation}
-
 where \(s\) is the cumulative contribution of all shadow volumes,
 captured by the given bud.
 
 \subsection{Differential Evolution and Pruning}
-
 Differential Evolution (DE) is a heuristic approach for minimizing
 possibly nonlinear and non-differential continuous objective function.
 Developed by Storm and Price \cite{storn_differential_1997}, the method aims to optimize
@@ -260,36 +253,31 @@ irradiance is calculated by the use of Eq. (2). Bud's irradiance, \(Q\)
 corresponds to the percentage of available light intercepted by the bud.
 For the sake of faster detection of ancestor/successor relationship
 between internodes, each internode is associated with a unique
-variable-length binary string as shown in Fig. 1b. Tree crown light
+variable-length binary string as shown in~Fig.~\ref{fig:my_figure1}~b. Tree crown light
 distribution is calculated next, where the irradiance of each bud in the
 crown is assigned to one of ten quantization classes of equal width on
 the interval {[}0, 1{]}. The objective function, \emph{f}(\textbf{x}),
 is:
 \begin{equation}
- f\left( \mathbf{x} \right) = \frac{\sqrt{S_{\mathrm{\text{tree}}}}}{H}\sum_{i = 1}^{10}{i \times h_{i}}   
+ f\left( \mathbf{x} \right) = \frac{\sqrt{S_{\mathrm{\text{tree}}}}}{H}\sum_{i = 1}^{10}{i \times h_{i}}, 
 \end{equation}
-
-
 where \(S_{\mathrm{\text{tree}}}\) is the number of remaining internodes
 after pruning, \emph{H} is the total number of buds, and \(h_{i}\) is
 the number of buds in the \emph{i}-th class of light distribution.
 
 We define an optimization function that describes the light interception
 of the tree as the sum of interception of all buds
-
 \begin{equation}
-   f\left( \mathbf{x} \right) = \sum_{i = 1}^{n}E_{i}
+   f\left( \mathbf{x} \right) = \sum_{i = 1}^{n}E_{i},
 \end{equation}
-
-
-Where $n$ is the number of buds that remain after the pruning,
+where $n$ is the number of buds that remain after the pruning,
 $E_{i}$ is the irradiance of the \(i\)-th bud. The function $f(\mathbf{x})$ is the total irradiance of the tree for a configuration \(x\) of the buds,
 also called the solution vector. The solution vector is denoted by
 \(\mathbf{x} = \ \left\{ x_{1},\ \ldots,x_{s} \right\}\) and it contains
 the encoded sequence of cut positions, labeled by the corresponding
 internodes. The root is denoted by a bit-string ``0''. A `0' or `1' is
 appended to the parent's string for each main or lateral child
-internode, respectively (Fig. 1b). Each cut position \(x_{i}\)
+internode, respectively (Fig.~\ref{fig:my_figure1}~b). Each cut position \(x_{i}\)
 identifies the internode, at which the branch is removed. Variable
 \emph{s} in this case is a population size and is a value between
 \(s_{\mathrm{\min}}\) and \(s_{\mathrm{\max}}\), which are custom set
@@ -299,18 +287,18 @@ provide a maximal improvement of light distribution with minimum amount
 of removed biomass. It is very important to recognize a redundant cuts,
 for example, if a cut should be made at internode ``00'', the cuts
 ``001'', ``000'', or ``0010'', would be redundant and thus unnecessary
-as shown in Fig. 2. Our labeling allows for quick detection of the
+as shown in Fig.~\ref{fig:my_figure2}. Our labeling allows for quick detection of the
 redundant cuts. In a given example the later three internodes share the
 same prefix ``00'', which is the label of their predecessor and with
 removing it, all of its successors are removed as well.
 
-\begin{figure}
+\begin{figure}[hbt]
     \centering
     \includegraphics[width=3.3in]{figs/image2.jpeg}
     \caption{Mapping of the solution vertex into the tree cutting
 sequence. Solution vector components that exceed the threshold are
 converted into the cuts with the help of the cut list.}
-    \label{fig:my_label}
+    \label{fig:my_figure2}
 \end{figure}
 
 
@@ -327,7 +315,6 @@ solution vector \(\mathbf{x}_{i}\ \)determines whether \emph{j}-th
 internode from the cut list will be selected as the cutting point or
 not. For that purpose the binary vector \(\mathbf{z}_{i}\) is
 constructed by thresholding:
-
 \begin{equation}
     z_{i,j} = \ \left\{ \begin{matrix}
 0, & \mathrm{\text{if}}\ x_{i,j} < 0.5 \\
@@ -339,10 +326,9 @@ constructed by thresholding:
 If the number of cuts proposed by the vector \(\mathbf{z}_{i}\) violates
 the solution size constraints, the threshold is adjusted up or down
 until the constraints are met. The entire mapping operation is shown in
-Fig.~2.
+Fig.~\ref{fig:my_figure2}.
 
 \subsection{Tree Height and Neighboring Distance Control}
-
 Although the DDE method significantly improves the light conditions
 inside the tree crown, it offers no control over the tree size or the
 distance to neighbor trees. Since the modern orchards are mostly
@@ -377,9 +363,8 @@ distance can be controlled easily. We prune the trees to circular shapes
 (cone and cylinder) with adjustable height and the base radius. After
 the branches outside the chosen shape are trimmed off, the DDE method is
 used to optimize the light condition inside the tree crown. The entire
-tree pruning process is depicted in Fig. 3.
-
-\begin{figure}
+tree pruning process is depicted in Fig.~\ref{fig:my_figure3}.
+\begin{figure}[hbt]
     \centering
     \includegraphics[width=5.3in]{figs/image3.jpeg}
     \caption{Two-step virtual pruning process enables the control
@@ -387,12 +372,8 @@ over tree height and neighboring distance. First, the tree is pre-pruned
 into a cone or cylinder shape with adjustable size. In the second step
 the DDE method selectively removes branches to improve the light
 conditions inside the tree crown.}
-    \label{fig:my_label}
+    \label{fig:my_figure3}
 \end{figure}
-
-
-
-
 
 The results of the final pruning are highly dependent on the maximum
 allowed number of cuts \(s_{\mathrm{\max}}\), which has to be adjusted
@@ -403,9 +384,8 @@ used: for example, orchards with Fruiting Wall planting system could use
 rectangular blocks.
 
 \section{Results}
-
 By using our proposed method, we pruned a four years old virtual
-untrained tree (shown in Fig. 4) by using the proposed method and
+untrained tree (shown in Fig.~\ref{fig:my_figure4}) by using the proposed method and
 compared the results to the pruning performed by horticulture expert.
 The tree training teaching environment EduAPPLE \cite{kohek_eduapple:_2015} was used for
 this purpose. The expert shaped the tree into two primary forms, a
@@ -414,8 +394,8 @@ growing form HeF, suitable for the Fruiting Wall planting system. For
 the automated pruning, we used a cone with the height of \(3\)m and the
 opening angle of \(45{^\circ}\) (DDECn), and a cylinder with a height of
 3m and radius of 0.75 m (DDECy). In both cases, \(s_{\mathrm{\max}}\)
-was set to 50. The pruning results can be seen in Fig. 4.
-\begin{figure}
+was set to 50. The pruning results can be seen in Fig.~\ref{fig:my_figure4}.
+\begin{figure}[hbt]
     \centering
     \includegraphics[width=5.4in]{figs/image4.jpeg}
     \caption{Comparison of pruning with the initial unpruned tree,
@@ -423,14 +403,11 @@ tree pruned by a human expert in a pyramidal shape (HeP), automated
 pruning with initial cone shape (DDECn), pruning by human expert pruning
 in a plat plane (HeF), automated pruning with the use of cylindrical
 initial shape (DDECy).}
-    \label{fig:my_label}
+    \label{fig:my_figure4}
 \end{figure}
 
-
-
-
 In all four cases, the light distribution inside the tree crown is
-significantly improved as compared to the unpruned tree, see Fig. 5. In the unpruned
+significantly improved as compared to the unpruned tree (Fig.~\ref{fig:my_figure5}). In the unpruned
 tree only 14.89 \% of buds receive more than 70 \% of available light while in the the human-pruned tree the amount of such buds increases to 26.80 \% (HeP) and to the 22.95 \% (HeF).
 The light distributions of automated tree pruning are comparable with
 that of human expert (25,93 \% for DDECn and 24.18 \% for DDECy). By comparing HeP to DDECn the result in the cases of human pruning is slightly better but in the case of HeF and DDECy the automated pruning achieved better result, althoug the difference in both casses is less than 1.3 \%. The difference between the DDE
@@ -446,7 +423,7 @@ percentage of buds in the tree crown receiving more than 40 \% of light
 available. In this case, the difference between automated and human
 pruning is 0.87 \%, in the case of HeP and DDECn and 6.86 \% by methods HeL and DDECy in the favour of the later.
 
-\begin{figure}
+\begin{figure}[hbt]
     \centering
     \includegraphics[width=5in]{figs/image5.jpeg}
     \caption{Evaluation of tree pruning results, a) Comparison of
@@ -454,27 +431,21 @@ light distribution after the pruning by a human expert (HeP and HeF) and
 automated pruning (DDECn and DDECy), b) Number of internodes left after
 the pruning. A higher number of internodes, combined with higher light
 exposure of buds signify better results.}
-    \label{fig:my_label}
+\label{fig:my_figure5}
 \end{figure}
-
-
-
-
 
 DDECn and DDECy are representative of the selective pruning, where the
 results of the first step represent the result of pruning by the
 automatic pruning systems currently used. The difference between the
-first and second step of DDECn and DDECy can be seen in Fig. 6.
+first and second step of DDECn and DDECy can be seen in Fig.~\ref{fig:my_figure6}.
 
-\begin{figure}
+\begin{figure}[hbt]
     \centering
     \includegraphics[width=5.4in]{figs/image6.jpeg}
     \caption{Tree crown light distribution after the first and
 second pruning step, a) DDECn method, b) DDECy method}
-    \label{fig:my_label}
+    \label{fig:my_figure6}
 \end{figure}
-
-
 
 We also wanted to evaluate a long-term exposure to pruning and we were
 curious if the proposed automated tree pruning method is capable of tree
@@ -486,15 +457,15 @@ them into the Slender Spindle growing form. The starting cone height was
 the trees in the following three years. The opening angle was constant
 at 45° for the experiment duration. The initial value of the parameter
 \(s_{\mathrm{\max}}\) was set to 20 and was linearly increased to 70 in
-the sixth year. The result of the experiment can be seen in Fig. 7.
+the sixth year. The result of the experiment can be seen in Fig.~\ref{fig:my_figure7}.
 
-\begin{figure}
+\begin{figure}[hbt]
     \centering
     \includegraphics[width=3.84333in,height=4.66333in]{figs/image7.jpeg}
     \caption{Tree training of five apple trees into a Slender
 Spindle growing form for six consecutive years with the DDECn method.
 The purple color denotes removed branches}
-    \label{fig:my_label}
+    \label{fig:my_figure7}
 \end{figure}
 
 
@@ -529,7 +500,7 @@ are not directly compatible with the EduAPPLE tree growth model and a
 reconstruction algorithm should be developed for that purpose. Since the
 proposed pruning method shows pruning results comparable to human
 expert, the construction of such an algorithm would be desirable. Some
-work in this direction has already been done {[}9{]}, but it is too
+work in this direction has already been done \cite{kohek_estimation_2017}, but it is too
 early to assess its efficiency.
 
 The main contribution of our work is to show that good pruning results
@@ -544,11 +515,11 @@ factor, the proposed method searched for the combination of cuts that
 maximize the light exposure. This resulted in the higher light
 distribution inside the tree crown. This distribution was also used for
 evaluation of tree pruning since the obtained tree forms cannot be
-compared directly. While the shapes of the trees in Fig. 4 differs much
+compared directly. While the shapes of the trees in Fig.~\ref{fig:my_figure4} differs much
 their light distributions are comparable. The additional pruning
 benchmark is the number of internodes, which represents the equivalent
 to the tree volume. The amount of removed internodes corresponds to the
-pruning intensity. Fig. 5b shows that the human expert preferred
+pruning intensity. Fig.~\ref{fig:my_figure5}~b shows that the human expert preferred
 slightly less aggressive pruning than the DDE method. The pruning
 intensity by the proposed automated pruning is controlled by the
 relation between tree volume and the value of the \(s_{\mathrm{\max}}\)
