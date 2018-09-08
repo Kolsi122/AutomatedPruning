@@ -27,8 +27,8 @@ sequence of metamers created at single spurt forms a shoot. The shoot
 axis is produced by the terminal bud which is located at the end of the
 shoot.
 
-Our approach uses the previously developed framework called EduAPPLE~\cite{kohek_eduapple:_2015}, 
-where the tree growth is driven by buds' illuminations~\cite{benes_efficient_1996,benes_visual_1997,mech_visual_1996} and a competitive process for growth resources \cite{alsweis_modeling_2005,arvo_modeling_1988,palubicki_self-organizing_2009,runions_modeling_2007}, which leads to the self-organizing structure of the tree. The
+Our approach uses the previously developed framework called EduAPPLE~\cite{kohek_eduapple:_2015},
+where the tree growth is driven by buds' illuminations~\cite{benes_efficient_1996,benes_visual_1997,mech_visual_1996} and a competitive process for growth resources~\cite{alsweis_modeling_2005,arvo_modeling_1988,palubicki_self-organizing_2009,runions_modeling_2007}, which leads to the self-organizing structure of the tree. The
 tree attempts to maximize its branch mass by growth and light intake by
 growth. Buds with higher irradiance produce new shoots that fill the
 empty space. Buds in lower irradiance produce quickly growing shoots
@@ -50,7 +50,7 @@ lighting conditions around the stem improve after removing some
 branches, dormant buds can reactivate and start to produce new shoots.
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=4.5in]{figs/image1.jpg}
+    \includegraphics[width=4.5in]{figs/Fig1}
     \caption{a) Plant modules of a self-organizing tree growth
 model, b) shadow space of a tree in used tree growth model from \cite{kohek_eduapple:_2015}.}
     \label{fig:my_figure1}
@@ -68,11 +68,13 @@ neighbors. Let \(d_{y}\) be the bud's vertical distance from the volume
 apex and \(d_{x,z}\) its horizontal distance from the volume axis, then
 the received shadow, originating from a given shadow volume is
 calculated by \cite{strnad_novel_2017}:
+
+
 \begin{equation}
 \Delta s = \left\{ \begin{matrix}
 \text{ab}^{- 0.8\left( d_{y} + d_{x,y} \right)}, & \mathrm{\text{if}}\ d_{x,y} < d_{y} \\
 0, & \mathrm{otherwise} \\
-\end{matrix},
+\end{matrix}, \right.\    
 \end{equation}
 where \(a\) \textgreater{} 0 and \(b\)\textgreater{} 0 are model
 parameters from \cite{palubicki_self-organizing_2009} and were set to \(a = 0.05\) and \(b = 2\).
