@@ -1,0 +1,237 @@
+\section{Materials and Methods}
+
+In the proposed approach to automated tree pruning, a predetermined set
+of tree pruning rules is replaced by an objective function which
+includes the goals that have to be achieved by the pruning, combined
+with the pre-pruning of a tree to cylindrical/conical shape. For the
+sake of this experiment, the objective function prefers the maximization
+of received light in the tree crown. For the optimization of the
+objective function, discrete differential evolution method is used,
+closely connected to a virtual tree model \cite{kohek_eduapple:_2015}, which is based on the
+concept of self-organization \cite{palubicki_self-organizing_2009}.
+
+\subsection{Tree Growth Model}
+
+A tree model used in our approach is represented as a hierarchy of
+modules as shown in Fig.~\ref{fig:my_figure1}~a) that is a common approach used in many plant
+simulators such as \cite{de_reffye_plant_1988,palubicki_self-organizing_2009,pirk_plastic_2012,prusinkiewicz_development_1988,stava_inverse_2014}. The point at which one or more
+leaves are attached to the stem is called a node. The part of the stem
+between two nodes is an internode. The growth is controlled by apical
+meristem that is a region of dividing cells that responds to gravity and
+to the incoming light. In this way the tree grows against gravity
+(gravitropism) and seeks the light (phototropism). Depending on the
+plant DNA and environmental factors (light, temperature, nutrients) the
+plant produces lateral buds that are either dormant or active. An
+internode with attached leaves and lateral bud is called a metamer and a
+sequence of metamers created at single spurt forms a shoot. The shoot
+axis is produced by the terminal bud which is located at the end of the
+shoot.
+
+Our approach uses the previously developed framework called EduAPPLE~\cite{kohek_eduapple:_2015}, 
+where the tree growth is driven by buds' illuminations~\cite{benes_efficient_1996,benes_visual_1997,mech_visual_1996} and a competitive process for growth resources \cite{alsweis_modeling_2005,arvo_modeling_1988,palubicki_self-organizing_2009,runions_modeling_2007}, which leads to the self-organizing structure of the tree. The
+tree attempts to maximize its branch mass by growth and light intake by
+growth. Buds with higher irradiance produce new shoots that fill the
+empty space. Buds in lower irradiance produce quickly growing shoots
+that attempt to get from shade. Poorly illuminated buds do not create
+new shoots, become dormant, and can form new shoots later, when the
+conditions are more favorable. The key factor of this simulation is the
+calculation of the illumination of leaves that feed buds and several
+algorithms exists. Although inner reflection can be considered \cite{soler_efficient_2003},
+the algorithms are usually time consuming, and the indirect light does
+not contribute significantly to growth, because major light intake is
+given by the direct lighting. A faster way is to use only the direct
+irradiance~\cite{benes_visual_1997,benes_efficient_1996,mech_visual_1996,pirk_plastic_2012}. 
+The tree cast shadow on itself and thus
+forming a shadow space of the tree as shown in Fig.~\ref{fig:my_figure1}~b). The shadow
+density is highest at the trunk; thus no leaves/shoots can grow from the
+dormant buds positioned there. The key contribution of pruning is in
+improving the illumination of the inner parts of the tree. When the
+lighting conditions around the stem improve after removing some
+branches, dormant buds can reactivate and start to produce new shoots.
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=4.5in]{figs/image1.jpg}
+    \caption{a) Plant modules of a self-organizing tree growth
+model, b) shadow space of a tree in used tree growth model from \cite{kohek_eduapple:_2015}.}
+    \label{fig:my_figure1}
+\end{figure}
+
+
+\subsection{Illumination}
+
+We calculated the inner shading by using the algorithm from \cite{palubicki_self-organizing_2009}
+that was later extended in~\cite{pirk_plastic_2012,stava_inverse_2014,strnad_novel_2017}. The light distribution
+inside the tree crown is calculated from the illuminated leaves that are
+sources of a conical shadow volume. We calculate the bud illumination.
+Suppose, we have a bud inside one of the shadow volumes of one of the
+neighbors. Let \(d_{y}\) be the bud's vertical distance from the volume
+apex and \(d_{x,z}\) its horizontal distance from the volume axis, then
+the received shadow, originating from a given shadow volume is
+calculated by \cite{strnad_novel_2017}:
+\begin{equation}
+\Delta s = \left\{ \begin{matrix}
+\text{ab}^{- 0.8\left( d_{y} + d_{x,y} \right)}, & \mathrm{\text{if}}\ d_{x,y} < d_{y} \\
+0, & \mathrm{otherwise} \\
+\end{matrix}, \right\},
+\end{equation}
+where \(a\) \textgreater{} 0 and \(b\)\textgreater{} 0 are model
+parameters from \cite{palubicki_self-organizing_2009} and were set to \(a = 0.05\) and \(b = 2\).
+Total irradiance of a given bud is then calculated by:
+\begin{equation}
+  Q = max\begin{Bmatrix}
+1 - s, & 0 \\
+\end{Bmatrix},  
+\end{equation}
+where \(s\) is the cumulative contribution of all shadow volumes,
+captured by the given bud.
+
+\subsection{Differential Evolution and Pruning}
+Differential Evolution (DE) is a heuristic approach for minimizing
+possibly nonlinear and non-differential continuous objective function.
+Developed by Storm and Price \cite{storn_differential_1997}, the method aims to optimize
+certain properties of a system pertinently choosing the system
+parameters, usually represented as a vector. Objective function models
+the objectives while incorporating potential constraints. DE employs
+evolutionary operators like mutation, crossover, and selection.
+
+Discrete DE (DDE) variants have been presented in relation to specific
+combinatorial optimization problems, e.g., \cite{davendra_flow_2009,pan_discrete_2008,wang_novel_2010}. The DDE has
+been used for the optimization of light condition inside the tree crown
+by removing certain branches in \cite{strnad_novel_2017} in particular four optimization
+methods have been used: BinDE, IndexDE, PathDE, and SetDE. Through
+optimization of pruning locations, a combination of cuts is obtained
+that maximizes the amount of light received by the remaining buds of the
+tree crown. For that purpose, for all buds in the tree crown the
+irradiance is calculated by the use of Eq. (2). Bud's irradiance, \(Q\)
+corresponds to the percentage of available light intercepted by the bud.
+For the sake of faster detection of ancestor/successor relationship
+between internodes, each internode is associated with a unique
+variable-length binary string as shown in~Fig.~\ref{fig:my_figure1}~b. Tree crown light
+distribution is calculated next, where the irradiance of each bud in the
+crown is assigned to one of ten quantization classes of equal width on
+the interval {[}0, 1{]}. The objective function, \emph{f}(\textbf{x}),
+is:
+\begin{equation}
+ f\left( \mathbf{x} \right) = \frac{\sqrt{S_{\mathrm{\text{tree}}}}}{H}\sum_{i = 1}^{10}{i \times h_{i}}, 
+\end{equation}
+where \(S_{\mathrm{\text{tree}}}\) is the number of remaining internodes
+after pruning, \emph{H} is the total number of buds, and \(h_{i}\) is
+the number of buds in the \emph{i}-th class of light distribution.
+
+We define an optimization function that describes the light interception
+of the tree as the sum of interception of all buds
+\begin{equation}
+   f\left( \mathbf{x} \right) = \sum_{i = 1}^{n}E_{i},
+\end{equation}
+where $n$ is the number of buds that remain after the pruning,
+$E_{i}$ is the irradiance of the \(i\)-th bud. The function $f(\mathbf{x})$ is the total irradiance of the tree for a configuration \(x\) of the buds,
+also called the solution vector. The solution vector is denoted by
+\(\mathbf{x} = \ \left\{ x_{1},\ \ldots,x_{s} \right\}\) and it contains
+the encoded sequence of cut positions, labeled by the corresponding
+internodes. The root is denoted by a bit-string ``0''. A `0' or `1' is
+appended to the parent's string for each main or lateral child
+internode, respectively (Fig.~\ref{fig:my_figure1}~b). Each cut position \(x_{i}\)
+identifies the internode, at which the branch is removed. Variable
+\emph{s} in this case is a population size and is a value between
+\(s_{\mathrm{\min}}\) and \(s_{\mathrm{\max}}\), which are custom set
+parameters, representing the minimum and the maximum number of allowed
+cuts. The objective function \(f(\mathbf{x})\) favors solutions that
+provide a maximal improvement of light distribution with minimum amount
+of removed biomass. It is very important to recognize a redundant cuts,
+for example, if a cut should be made at internode ``00'', the cuts
+``001'', ``000'', or ``0010'', would be redundant and thus unnecessary
+as shown in Fig.~\ref{fig:my_figure2}. Our labeling allows for quick detection of the
+redundant cuts. In a given example the later three internodes share the
+same prefix ``00'', which is the label of their predecessor and with
+removing it, all of its successors are removed as well.
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=3.3in]{figs/image2.jpeg}
+    \caption{Mapping of the solution vertex into the tree cutting
+sequence. Solution vector components that exceed the threshold are
+converted into the cuts with the help of the cut list.}
+    \label{fig:my_figure2}
+\end{figure}
+
+
+For our experiment, we have selected only BinDE optimization method
+because the pruning results were visually close to those of the human
+expert. The encoding scheme of BinDE uses the real-valued vectors to
+represent solution genotypes. For the mapping of genotypes to pruning
+instances, the intermediate cut list is used. It is produced by
+traveling the tree model in a depth-first manner and recording the
+labels of all internodes encountered in the process into a list. The
+length of the cut list defines the dimensions of solution vectors. Each
+component \(x_{i,j} \in \ \left\lbrack 0,\ 1 \right\rbrack\) of the
+solution vector \(\mathbf{x}_{i}\ \)determines whether \emph{j}-th
+internode from the cut list will be selected as the cutting point or
+not. For that purpose the binary vector \(\mathbf{z}_{i}\) is
+constructed by thresholding:
+\begin{equation}
+    z_{i,j} = \ \left\{ \begin{matrix}
+0, & \mathrm{\text{if}}\ x_{i,j} < 0.5 \\
+1, & \mathrm{\text{otherwise}} \\
+\end{matrix}, \right.\
+\end{equation}
+
+
+If the number of cuts proposed by the vector \(\mathbf{z}_{i}\) violates
+the solution size constraints, the threshold is adjusted up or down
+until the constraints are met. The entire mapping operation is shown in
+Fig.~\ref{fig:my_figure2}.
+
+\subsection{Tree Height and Neighboring Distance Control}
+Although the DDE method significantly improves the light conditions
+inside the tree crown, it offers no control over the tree size or the
+distance to neighbor trees. Since the modern orchards are mostly
+protected by the anti-hail nets, it is crucial to keep apple trees at a
+certain height. Similarly, the neighboring distance that, has to be
+preserved during the entire lifetime of an orchard.
+
+A straightforward method to get control over the tree height and
+neighboring distance would be the extension of the objective function
+\(f\left( \mathbf{x} \right)\) with additional constraints regarding the
+tree size. It turned out, however, that while the integration of the
+tree height into the tree model and objective function is possible, the
+determination of the extent of the tree crown after the pruning was not
+very efficient.
+
+Our inspiration for the solution to this problem comes from observing a
+human during manual pruning. Instead of just following the pruning
+rules, the human pruner strives to shape the tree into one of the
+well-defined growing forms. Those growing forms were developed over the
+years by the experts and gave the best fruiting results under certain
+growing conditions. In the high density orchards, the most common tree
+forms are the Slender Spindle \cite{weber_optimizing_2000}, and more recent, the Tall
+Spindle \cite{robinson_vision_2013}. While the first growing form is more conically shaped
+the second resembles a cylinder. Tall spindle is very popular because it
+is suitable for mechanical pruning and formation of the Fruiting Wall
+\cite{robinson_vision_2013}.
+
+Instead of changing the objective function, we propose adding a
+preprocessing level to the DDE method. We call this step pre-pruning and
+by adding this the desired form, the tree height and neighboring
+distance can be controlled easily. We prune the trees to circular shapes
+(cone and cylinder) with adjustable height and the base radius. After
+the branches outside the chosen shape are trimmed off, the DDE method is
+used to optimize the light condition inside the tree crown. The entire
+tree pruning process is depicted in Fig.~\ref{fig:my_figure3}.
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=5.3in]{figs/image3.jpeg}
+    \caption{Two-step virtual pruning process enables the control
+over tree height and neighboring distance. First, the tree is pre-pruned
+into a cone or cylinder shape with adjustable size. In the second step
+the DDE method selectively removes branches to improve the light
+conditions inside the tree crown.}
+    \label{fig:my_figure3}
+\end{figure}
+
+The results of the final pruning are highly dependent on the maximum
+allowed number of cuts \(s_{\mathrm{\max}}\), which has to be adjusted
+to the tree age and complexity of the tree crown. In our implementation,
+we set \(s_{\mathrm{\max}} = 20\) which provided good results for young
+trees. While we used circular proxies in our work, other shapes could be
+used: for example, orchards with Fruiting Wall planting system could use
+rectangular blocks.

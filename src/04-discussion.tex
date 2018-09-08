@@ -1,0 +1,54 @@
+\section{Discussion}
+
+We have introduced an automated method for simulation of pruning of
+trees and tree colonies. The objective was to propose pruning that
+maximizes light exposure of buds within the crown and we used two step
+method, where first step prunes the tree to a desired shape, and the
+second step maximizes the bud irradiance. Our results show that this
+combination comes close to the human pruning regarding the light
+distribution inside the tree crown. The pruning simulation of a group of
+trees for several consecutive years showed that the method could also be
+used for the tree training towards desirable growing form. Since DDE is
+a stochastic method, the set of excess branches that have to be removed
+can vary from simulation to simulation. The solutions are not always
+equally successful with respect to tree light crown distribution, but
+the same is also true by the pruning solutions proposed by human pruning
+expert.
+
+The possible limitation of the proposed method is its strong dependency
+on the tree growth model topological structure. This is important
+because the challenging step in the automated tree pruning is the
+construction of the appropriate tree model from tree images. Successful
+algorithms of this kind are presented in {[}1, 5, 10{]}. However, they
+are not directly compatible with the EduAPPLE tree growth model and a
+reconstruction algorithm should be developed for that purpose. Since the
+proposed pruning method shows pruning results comparable to human
+expert, the construction of such an algorithm would be desirable. Some
+work in this direction has already been done \cite{kohek_estimation_2017}, but it is too
+early to assess its efficiency.
+
+The main contribution of our work is to show that good pruning results
+can be obtained automatically and without a fixed set of pruning rules.
+This is not surprising since the pruning rules were developed by the
+long-term experiments whose goal was to improve yield quality as well as
+its quantity. Once the main parameters that influence the yield were
+determined, the pruning techniques have been developed that maximize the
+influence of those parameters and that is what the DDE objective
+function is trying to model. Since the light exposure is a critical
+factor, the proposed method searched for the combination of cuts that
+maximize the light exposure. This resulted in the higher light
+distribution inside the tree crown. This distribution was also used for
+evaluation of tree pruning since the obtained tree forms cannot be
+compared directly. While the shapes of the trees in Fig.~\ref{fig:my_figure4} differs much
+their light distributions are comparable. The additional pruning
+benchmark is the number of internodes, which represents the equivalent
+to the tree volume. The amount of removed internodes corresponds to the
+pruning intensity. Fig.~\ref{fig:my_figure5}~b shows that the human expert preferred
+slightly less aggressive pruning than the DDE method. The pruning
+intensity by the proposed automated pruning is controlled by the
+relation between tree volume and the value of the \(s_{\mathrm{\max}}\)
+parameter. In order to preserve the tree pruning intensity, as the tree
+is growing, the value of \(s_{\mathrm{\max}}\) have to increase with the
+increasing number of internodes in the tree. In our experiments, 20
+turned out to be the good initial value for the \(s_{\mathrm{\max}}\)
+parameter.
