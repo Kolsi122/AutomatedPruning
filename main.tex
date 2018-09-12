@@ -32,6 +32,47 @@
 
 \date{}
 
+%Some macros by BB
+\usepackage{color}
+\usepackage{soul}
+\usepackage{multirow}
+\usepackage{rotating}
+%\usepackage{ulem} % crossed text
+\definecolor{turquoise}{cmyk}{0.65,0,0.1,0.1}
+\definecolor{purple}{rgb}{0.65,0,0.65}
+\definecolor{darkgreen}{rgb}{0.0, 0.5, 0.0}
+\definecolor{darkred}{rgb}{0.5, 0.0, 0.0}
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.5}
+\definecolor{blue}{rgb}{0.0, 0.0, 1.0}
+
+\newcommand{\egfinal}[1]{{#1}}
+%\newcommand{\changed}[1]{{#1}}
+\newcommand{\changed}[1]{{\color{red}[{#1}]}}
+\newcommand{\tog}[1]{{#1}}
+\newcommand{\togerase}[1]{\st{#1}}
+
+\newcommand{\qa}[2]{\marginpar{\color{red}\textbf{A\,#1}}{\color{red}#2}}
+\newcommand{\todo}[1]{\textbf{ \color{red}[todo: #1]}}
+\newcommand{\erase}[1]{\st{#1}}
+\newcommand{\del}[1]{\st{#1}}
+\newcommand{\BB}[1]{{\textbf{ \color{cyan}[BB: #1]}}}
+\newcommand{\bb}[1]{{\textbf{ \color{cyan}[BB: #1]}}}
+\newcommand{\THCOMMENT}[1]{{\bf \color{magenta}[TH: #1]}}
+\newcommand{\rep}[2]{\textbf{ \color{cyan}[replace: #1 {\it with} #2]}}
+\newcommand{\ale}[1]{\textbf{ \color{green}[Ale: #1]}}
+\newcommand{\ALE}[1]{\textbf{ \color{green}[Ale: #1]}}
+\newcommand{\PF}[1]{\textbf{ \color{green}[PF: #1]}}
+\newcommand{\pf}[1]{\textbf{ \color{green}[PF: #1]}}
+\newcommand{\SP}[1]{\textbf{ \color{red}[SP: #1]}}
+\newcommand{\meta}[1]{{\color{blue}[meta: #1]}}
+\newcommand{\hide}[1]{{}}
+\newcommand{\mbf}[1]{\mathbf{#1}}
+\newcommand{\ch}[1]{{#1}}
+\newcommand{\eg}{{\textit{e.g., }}}
+\newcommand{\ie}{{\textit{i.e., }}}
+\newcommand{\etal}{{\textit{et al.}}}
+%end of some macros by BB
+
 %\usepackage{natbib}
 %\bibliographystyle{unsrtnat}
 \bibliographystyle{elsarticle-harv}
@@ -42,13 +83,13 @@
 
 \title{An Algorithm for Automatic Dormant Tree Pruning }
 
-\author[FERI]{Simon Kolmanič}\corref{CoresAuth}
+\author[FERI]{Simon Kolmani\v{c}}\corref{CoresAuth}
 \ead{simon.kolmanic@um.si}
 \author[FERI]{Damjan Strnad}
 \author[FERI]{\v{S}tefan Kohek}
 \author[PURDUE]{Bedrich Benes}
 \author[PURDUE]{Peter Hirst}
-\author[FERI]{Borut v{Z}alik}
+\author[FERI]{Borut \v{Z}alik}
 
 \address[FERI]{%Faculty of Electrical Engineering and Computer Science,\\
 University of Maribor, Koroška cesta 46, 2000 Maribor, Slovenia}
