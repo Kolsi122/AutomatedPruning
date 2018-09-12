@@ -1,31 +1,35 @@
-\section{Materials and Methods}
+%%%%%%%%%%%%%%%%
+\section{Materials and Methods}\label{sec:intro}
+%%%%%%%%%%%%%%%%
+\bb{Our main contribution is in not using predefined pruning rules.
+Instead, we use} an objective function which includes the goals that are commonly considered by pruning~\cite{}\bb{do you have any citation that can support the previous claim? if yes, add it please}; \bb{in particular maximization of the light intake by removing branches that cause shadowing and removing old and dead branches. This is also }combined
+with the pre-pruning of a tree \bb{to take either cylindrical or conical shape.} 
+The objective function is optimized by using discrete differential evolution method~\cite{kohek_eduapple:_2015}, which is based on the
+concept of self-organizing trees of~\cite{palubicki_self-organizing_2009}.
 
-In the proposed approach to automated tree pruning, a predetermined set
-of tree pruning rules is replaced by an objective function which
-includes the goals that have to be achieved by the pruning, combined
-with the pre-pruning of a tree to cylindrical/conical shape. For the
-sake of this experiment, the objective function prefers the maximization
-of received light in the tree crown. For the optimization of the
-objective function, discrete differential evolution method is used,
-closely connected to a virtual tree model \cite{kohek_eduapple:_2015}, which is based on the
-concept of self-organization \cite{palubicki_self-organizing_2009}.
 
+%%%%%%%%%%%%%%%%
 \subsection{Tree Growth Model}
-
+%%%%%%%%%%%%%%%%
 A tree model used in our approach is represented as a hierarchy of
 modules as shown in Fig.~\ref{fig:my_figure1}~a) that is a common approach used in many plant
-simulators such as \cite{de_reffye_plant_1988,palubicki_self-organizing_2009,pirk_plastic_2012,prusinkiewicz_development_1988,stava_inverse_2014}. The point at which one or more
-leaves are attached to the stem is called a node. The part of the stem
-between two nodes is an internode. The growth is controlled by apical
-meristem that is a region of dividing cells that responds to gravity and
+simulators such as \cite{de_reffye_plant_1988,palubicki_self-organizing_2009,pirk_plastic_2012,prusinkiewicz_development_1988,stava_inverse_2014}. 
+
+The point at which one or more leaves are attached to the stem is called a node and the part of the stem between two nodes is an internode. 
+The growth is controlled by apical meristem that is a region of dividing cells that responds to gravity and
 to the incoming light. In this way the tree grows against gravity
-(gravitropism) and seeks the light (phototropism). Depending on the
-plant DNA and environmental factors (light, temperature, nutrients) the
-plant produces lateral buds that are either dormant or active. An
-internode with attached leaves and lateral bud is called a metamer and a
-sequence of metamers created at single spurt forms a shoot. The shoot
-axis is produced by the terminal bud which is located at the end of the
+(gravitropism) and towards the light (phototropism). 
+Depending on the plant DNA and environmental factors (light, temperature, nutrients, etc.) the plant produces lateral buds that are either dormant or active. 
+An internode with attached leaves and lateral bud is called a metamer and a sequence of metamers created at single spurt forms a shoot. 
+The shoot axis is produced by the terminal bud which is located at the end of the
 shoot.
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=4.5in]{figs/Fig1}
+    \caption{a) Plant modules of a self-organizing tree growth
+model, b) shadow space of a tree in used tree growth model from \cite{kohek_eduapple:_2015}.}
+    \label{fig:my_figure1}
+\end{figure}
 
 Our approach uses the previously developed framework called EduAPPLE~\cite{kohek_eduapple:_2015},
 where the tree growth is driven by buds' illuminations~\cite{benes_efficient_1996,benes_visual_1997,mech_visual_1996} and a competitive process for growth resources~\cite{alsweis_modeling_2005,arvo_modeling_1988,palubicki_self-organizing_2009,runions_modeling_2007}, which leads to the self-organizing structure of the tree. The
@@ -48,17 +52,11 @@ dormant buds positioned there. The key contribution of pruning is in
 improving the illumination of the inner parts of the tree. When the
 lighting conditions around the stem improve after removing some
 branches, dormant buds can reactivate and start to produce new shoots.
-\begin{figure}[hbt]
-    \centering
-    \includegraphics[width=4.5in]{figs/Fig1}
-    \caption{a) Plant modules of a self-organizing tree growth
-model, b) shadow space of a tree in used tree growth model from \cite{kohek_eduapple:_2015}.}
-    \label{fig:my_figure1}
-\end{figure}
 
 
+%%%%%%%%%%%%%%%%%%%
 \subsection{Illumination}
-
+%%%%%%%%%%%%%%%%%%
 We calculated the inner shading by using the algorithm from \cite{palubicki_self-organizing_2009}
 that was later extended in~\cite{pirk_plastic_2012,stava_inverse_2014,strnad_novel_2017}. The light distribution
 inside the tree crown is calculated from the illuminated leaves that are
