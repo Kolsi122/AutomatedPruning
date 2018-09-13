@@ -88,17 +88,30 @@ captured by the given bud.
 \subsection{Differential Evolution and Pruning}
 Differential Evolution (DE) is a heuristic approach for minimizing
 possibly nonlinear and non-differential continuous objective function.
-Developed by Storm and Price \cite{storn_differential_1997}, the method aims to optimize
-certain properties of a system pertinently choosing the system
-parameters, usually represented as a vector. Objective function models
-the objectives while incorporating potential constraints. DE employs
-evolutionary operators like mutation, crossover, and selection.
+Developed by Storm and Price \cite{storn_differential_1997}, the method aims to optimize certain properties of a system pertinently choosing the system parameters, usually represented as a vector. Objective function models the objectives while incorporating potential constraints. For objective function $f:X \subseteq\!R^{n}\rightarrow \!R$ where $X\neq\emptyset$, the minimization problem is to find solution vector $\mathbf{s}\in X$, such that $f(\mathbf{s})\leq f(\mathbf{p}), \forall \mathbf{p}\in X$. in the search for the solution DE employs
+evolutionary operators like mutation, crossover, and selection. Those three operators are sequentially carried out in a loop, until a adequate fitness or number of iterations is reached.
 
+The mutation operator produces a trial vector for each individual of the current population by mutating a target vector with a weighted differential. This trial vector will then be used by the crossover operator to produce offspring \cite{engelbrecht2008computational}. For each parent $\mathbf{x}_{i}\in X$ a three distinct individuals $\mathbf{x}_{i_1}$,  $\mathbf{x}_{i_2}$, and $\mathbf{x}_{i_3}$ have to be picked randomly from the population, $i \neq i_1 \neq i_2 \neq i_3$ and then used to calculate the trial vector $\mathbf{u}_i$ as follows:
+\begin{equation}
+    \mathbf{u}_i = \mathbf{x}_{i_1}+\beta\times (\mathbf{x}_{i_2}-\mathbf{x}_{i_3})
+\end{equation}
+where $\beta \in (0, \infty )$ is called differential weight and is controlling the amplification of the differential variation. 
+
+The DE crossover operator implements a discrete recombination of trial $\mathbf{u}_i$ and the parent $\mathbf{x}_i$ vectors, to produce offspring $\mathbf{x}^{,}_i$. The crossover operator is defined by:
+\begin{equation}
+     x^{,}_{i,j} = \ \left\{ \begin{matrix}
+u_{i,j}, & \mathrm{\text{if}}\ j \in C \\
+x_{i,j}, & \mathrm{\text{otherwise}} \\
+\end{matrix} \right.\   
+\end{equation}
+where $x^{,}_{i,j}$ refers to the $j$-th element of the vector $\mathbf{x}_i$ and $C$ is the set of randomly selected crossover points.
+
+Selection is applied to construct the population for the next generation. The offspring replaces the parent if the fitness of the offspring surpasses that of the parent otherwise the parent survives to the next generation. This ensures that the average fitness of the population does not deteriorate.
+\subsubsection{Discrete Differential Evolution}
 Discrete DE (DDE) variants have been presented in relation to specific
 combinatorial optimization problems, e.g., \cite{davendra_flow_2009,pan_discrete_2008,wang_novel_2010}. The DDE has
 been used for the optimization of light condition inside the tree crown
-by removing certain branches in \cite{strnad_novel_2017} in particular four optimization
-methods have been used: BinDE, IndexDE, PathDE, and SetDE. Through
+by removing certain branches in \cite{strnad_novel_2017}. Through
 optimization of pruning locations, a combination of cuts is obtained
 that maximizes the amount of light received by the remaining buds of the
 tree crown. For that purpose, for all buds in the tree crown the
@@ -155,9 +168,7 @@ converted into the cuts with the help of the cut list.}
 \end{figure}
 
 
-For our experiment, we have selected only BinDE optimization method
-because the pruning results were visually close to those of the human
-expert. The encoding scheme of BinDE uses the real-valued vectors to
+The encoding scheme of used DDE method uses the real-valued vectors to
 represent solution genotypes. For the mapping of genotypes to pruning
 instances, the intermediate cut list is used. It is produced by
 traveling the tree model in a depth-first manner and recording the
