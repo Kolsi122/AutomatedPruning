@@ -1,16 +1,16 @@
 
 \section{Results}
-By using our proposed method, we pruned a four years old virtual
+We pruned a four years old virtual
 untrained tree (shown in Fig.~\ref{fig:my_figure4}) by using the proposed method and
 compared the results to the pruning performed by horticulture expert.
 The tree training teaching environment EduAPPLE \cite{kohek_eduapple:_2015} was used for
 this purpose. The expert shaped the tree into two primary forms, a
-pyramidal growing form HeP (Human expert - Pyramidal), which is similar to a Slender Spindle, and a
-growing form HeF (Human expert - Flatt), suitable for the Fruiting Wall planting system. For
-the automated pruning, we used a cone with the height of \(3\)m and the
-opening angle of \(45{^\circ}\) (DDECn - DDE method, Conical initial shape), and a cylinder with a height of
-3m and radius of 0.75 m (DDECy - DDE method, Cylindrical initial shape). In both cases, \(s_{\mathrm{\max}}\)
-was set to 50. The pruning results can be seen in Fig.~\ref{fig:my_figure4}.
+pyramidal growing form (denoted as HeP -- Human expert - Pyramidal), which is similar to a Slender Spindle, and a
+growing form Flatt (denoted as HeF -- Human expert - Flatt), suitable for the Fruiting Wall planting system. 
+For the automated pruning, we used a cone with the height of \(3\)m and the
+opening angle of \(45{^\circ}\) (denoted as DDECn -- DDE method, Conical initial shape), and a cylinder with a height of
+3m and radius of 0.75 m (denoted as DDECy -- DDE method, Cylindrical initial shape). 
+In both cases, we set \(s_{\mathrm{\max}}=50\). 
 \begin{figure}[hbt]
     \centering
     \includegraphics[width=5.4in]{figs/image4.jpeg}
@@ -18,17 +18,61 @@ was set to 50. The pruning results can be seen in Fig.~\ref{fig:my_figure4}.
 tree pruned by a human expert in a pyramidal shape (HeP), automated
 pruning with initial cone shape (DDECn), pruning by human expert pruning
 in a plat plane (HeF), automated pruning with the use of cylindrical
-initial shape (DDECy).}
+initial shape (DDECy). \bb{Can you also show here a top view of the trees?}}
     \label{fig:my_figure4}
 \end{figure}
 
-In all four cases, the light distribution inside the tree crown is
-significantly improved as compared to the unpruned tree (Fig.~\ref{fig:my_figure5}). In the unpruned
-tree only 14.89 \% of buds receive more than 70 \% of available light while in the the human-pruned tree the amount of such buds increases to 26.80 \% (HeP) and to the 22.95 \% (HeF).
-The light distributions of automated tree pruning are comparable with
-that of human expert (25,93 \% for DDECn and 24.18 \% for DDECy). By comparing HeP to DDECn the result in the cases of human pruning is slightly better but in the case of HeF and DDECy the automated pruning achieved better result, althoug the difference in both casses is less than 1.3 \%. The difference between the DDE
-and human pruning is also visible in the category of the internodes left
-in the tree after the pruning.
+In all four cases, the light distribution inside the tree crown has
+improved (see Table~\ref{tab:light}) as compared to the unpruned tree (Fig.~\ref{fig:my_figure5}) \bb{with the average increase of 168\% of buds}. 
+In particular, only 14.89 \% of buds receive more than 70 \% of available light in the unpruned trees, 
+while in the the human-pruned tree the amount of such buds increases to 26.80 \% (HeP) and to the 22.95 \% (HeF).
+The light distributions of the automated tree pruning are comparable with
+that of human expert (25,93 \% for DDECn and 24.18 \% for DDECy). 
+When comparing HeP to DDECn the result in the cases of human pruning is slightly better but in the case of HeF and DDECy the automated pruning achieved better result, although the difference in both casses is less than 1.3 \%.  
+\begin{table}
+\begin{center}
+\begin{tabular}{ |l|c|c| } 
+ \hline
+ \textbf{Method} & \% of buds receiving                           & $\Delta$ to unpruned [\%] \\ 
+                 &  more than 70\% of light                       &  \\ 
+ \hline
+ \textbf{Unpruned}            & 14.89 & 0 \\ 
+ \hline
+ \textbf{Manual Expert (HeP)} & 26.80 & 180 \\ 
+ \textbf{Manual Expert (HeF)} & 22.95 & 154 \\ 
+  \hline
+ \textbf{Automatic (DDECn)} & 25.93 & 174 \\ 
+ \textbf{Automatic (DDECy)} & 24.18 & 162 \\ 
+ \hline
+\end{tabular}
+\end{center}
+\caption{The percentage of buds receiving more than 70\% of light in an unpruned tree and after manual pruning by using HeP and HeF methods and our automatic pruning by using DDECn and DDECy. The improvement in all cases is in average of 168\%. }
+\label{tab:light}
+\end{table}
+
+
+The difference between the DDE and human pruning is also visible in the category of the internodes left in the tree after the pruning as shown in Table~\ref{tab:inodes}.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{ |l|c|c| } 
+ \hline
+ \textbf{Method} &  ofinternodes on the tree  & $\Delta$ to unpruned [\%] \\ 
+  \hline
+ \textbf{Unpruned}            & 14.89 & 0 \\ 
+ \hline
+ \textbf{Manual Expert (HeP)} & 26.80 & 180 \\ 
+ \textbf{Manual Expert (HeF)} & 22.95 & 154 \\ 
+  \hline
+ \textbf{Automatic (DDECn)} & 25.93 & 174 \\ 
+ \textbf{Automatic (DDECy)} & 24.18 & 162 \\ 
+ \hline
+\end{tabular}
+\end{center}
+\caption{The percentage of buds receiving more than 70\% of light in an unpruned tree and after manual pruning by using HeP and HeF methods and our automatic pruning by using DDECn and DDECy. The improvement in all cases is in average of 168\%. }
+\label{tab:inodes}
+\end{table}
+
 
 By combining both results, it can be concluded, that the human expert
 achieved similar bud light exposure with less biomass removed,
