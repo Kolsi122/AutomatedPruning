@@ -19,13 +19,14 @@ The possible limitation of the proposed method is its strong dependency
 on the tree growth model topological structure. This is important
 because the challenging step in the automated tree pruning is the
 construction of the appropriate tree model from tree images. Successful
-algorithms of this kind are presented in~\cite{akbar2016novel,benes_visual_1997,de_reffye_plant_1988,palubicki_self-organizing_2009}.
+algorithms of this kind are presented e.g, in~\cite{akbar_novel_2016,benes_visual_1997,de_reffye_plant_1988,palubicki_self-organizing_2009}.
 However, they are not directly compatible with the EduAPPLE tree growth model and a
-reconstruction algorithm should be developed for that purpose. Since the
-proposed pruning method shows pruning results comparable to human
+it would be important to bring these algorithms to a common ground, 
+for example by generating the same tree representation. 
+Since the proposed pruning method shows pruning results comparable to human
 expert, the construction of such an algorithm would be desirable. Some
-work in this direction has already been done~\cite{kohek_estimation_2017}, but it is too
-early to assess its efficiency.
+work in this direction has already been done~\cite{kohek_estimation_2017}, 
+but it is too early to assess its efficiency.
 
 The main contribution of our work is to show that good pruning results
 can be obtained automatically and without a fixed set of pruning rules.
@@ -39,16 +40,18 @@ factor, the proposed method searched for the combination of cuts that
 maximize the light exposure. This resulted in the higher light
 distribution inside the tree crown. This distribution was also used for
 evaluation of tree pruning since the obtained tree forms cannot be
-compared directly. While the shapes of the trees in Fig.~\ref{fig:my_figure4} differs much
+compared directly. While the shapes of the trees in Fig.~\ref{fig:my_figure4} differ,
 their light distributions are comparable. The additional pruning
-benchmark is the number of internodes, which represents the equivalent
-to the tree volume. The amount of removed internodes corresponds to the
-pruning intensity. Fig.~\ref{fig:my_figure5}~b shows that the human expert preferred
+benchmark is the number of internodes that corresponds to to the tree volume. 
+The amount of removed internodes represents  the
+pruning intensity and Fig.~\ref{fig:my_figure5}~b shows that the human expert preferred
 slightly less aggressive pruning than the DDE method. The pruning
 intensity by the proposed automated pruning is controlled by the
 relation between tree volume and the value of the \(s_{\mathrm{\max}}\)
 parameter. In order to preserve the tree pruning intensity, as the tree
-is growing, the value of \(s_{\mathrm{\max}}\) have to increase with the
-increasing number of internodes in the tree. In our experiments, 20
-turned out to be the good initial value for the \(s_{\mathrm{\max}}\)
-parameter.
+is growing, the value of \(s_{\mathrm{\max}}\) should increase with the
+increasing number of internodes in the tree. In our experiments, \(s_{\mathrm{\max}}=20\)
+turned out to be the good initial value.
+
+\bb{There are many possible avenues for future work. As mentioned above, coupling our method with other 
+plant growth algorithms would be an important task to do. Another future work would be to use different optimization methods than the DDC. A long-term effect of growth should be also evaluated. It may be possible that the immediate value of bud illumination is not the most indicative factor and long-term plant health and development should be tested. Last but not least, our algorithm is a first step in an exciting direction of automated pruning. It would be interesting to automatically prune thousands of tree models and calculate statistics of the values we reported in Tables~\ref{tab:light} and~\ref{tab:inodes}. Although, we paid attention to report representative models, there may be a strong variation and statistics would provide a better representative value. }
