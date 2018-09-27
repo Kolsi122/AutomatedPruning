@@ -22,14 +22,14 @@ initial shape (DDECy). \bb{Can you also show here a top view of the trees?}}
     \label{fig:my_figure4}
 \end{figure}
 
-In all four cases, the light distribution inside the tree crown has
+\noindent\textbf{Light Distribution:} In all four cases, the light distribution inside the tree crown has
 improved (see Table~\ref{tab:light}) as compared to the unpruned tree (Fig.~\ref{fig:my_figure5}) \bb{with the average increase of 168\% of buds}. 
 In particular, only 14.89 \% of buds receive more than 70 \% of available light in the unpruned trees, 
 while in the the human-pruned tree the amount of such buds increases to 26.80 \% (HeP) and to the 22.95 \% (HeF).
 The light distributions of the automated tree pruning are comparable with
 that of human expert (25,93 \% for DDECn and 24.18 \% for DDECy). 
 When comparing HeP to DDECn the result in the cases of human pruning is slightly better but in the case of HeF and DDECy the automated pruning achieved better result, although the difference in both casses is less than 1.3 \%.  
-\begin{table}
+\begin{table}[hbt]
 \begin{center}
 \begin{tabular}{ |l|c|c| } 
  \hline
@@ -50,38 +50,40 @@ When comparing HeP to DDECn the result in the cases of human pruning is slightly
 \label{tab:light}
 \end{table}
 
-
-The difference between the DDE and human pruning is also visible in the category of the internodes left in the tree after the pruning as shown in Table~\ref{tab:inodes}.
-
-\begin{table}
+\noindent\textbf{Pruned Internodes:} The difference between the DDE and human pruning is also visible in the category of the internodes left in the tree after the pruning as shown in Table~\ref{tab:inodes}. The unpruned tree has 18,618 internodes. After manual pruning by using HeP the number decreased to 7,810 and manual pruning by using HeF decreased the number to 5,715. Automatic pruning provided smaller numbers. The DDECn algorithm pruned the tree to 5,714 and the DDECy to 4,867 nodes. The average number for manual pruning was 6,776 and for automatic 5,291.
+\begin{table}[hbt]
 \begin{center}
 \begin{tabular}{ |l|c|c| } 
  \hline
- \textbf{Method} &  ofinternodes on the tree  & $\Delta$ to unpruned [\%] \\ 
+ \textbf{Method} & number of internodes on the tree  & $\Delta$ to unpruned [\%] \\ 
   \hline
- \textbf{Unpruned}            & 14.89 & 0 \\ 
+ \textbf{Unpruned}            & 18,618 & 0 \\ 
  \hline
- \textbf{Manual Expert (HeP)} & 26.80 & 180 \\ 
- \textbf{Manual Expert (HeF)} & 22.95 & 154 \\ 
+ \textbf{Manual Expert (HeP)} & 7,810 & 42 \\ 
+ \textbf{Manual Expert (HeF)} & 5,715 & 31 \\ 
   \hline
- \textbf{Automatic (DDECn)} & 25.93 & 174 \\ 
- \textbf{Automatic (DDECy)} & 24.18 & 162 \\ 
+ \textbf{Automatic (DDECn)} & 5,741 & 31 \\ 
+ \textbf{Automatic (DDECy)} & 4,867 & 26 \\ 
  \hline
 \end{tabular}
 \end{center}
-\caption{The percentage of buds receiving more than 70\% of light in an unpruned tree and after manual pruning by using HeP and HeF methods and our automatic pruning by using DDECn and DDECy. The improvement in all cases is in average of 168\%. }
+\caption{The number of internodes on the tree in an unpruned tree and the comparison to the number of internodes after manual pruning by using HeP and HeF methods and our automatic pruning by using DDECn and DDECy. The average number of internodes is 6,033 that corresponds to 32\% of nodes of the unpruned tree. }
 \label{tab:inodes}
 \end{table}
 
-
-By combining both results, it can be concluded, that the human expert
+By combining both results from Tables~\ref{tab:light} and~\ref{tab:inodes}, 
+it can be concluded, that the human expert
 achieved similar bud light exposure with less biomass removed,
 which is desirable since the higher number of internodes with
 well-illuminated buds represent the higher potential for the yield of
-both increased quality and quantity. Another metric is to compare the
+both increased quality and quantity. 
+
+\bb{Should we remove the paragraph below? Or move it to the paragraph that discusses the light?
+Now it is AFTER combining both results and I feel it does not fit here.}
+Another metric is to compare the
 percentage of buds in the tree crown receiving more than 40 \% of light
 available. In this case, the difference between automated and human
-pruning is 0.87 \%, in the case of HeP and DDECn and 6.86 \% by methods HeL and DDECy in the favour of the later.
+pruning is 0.87 \%, in the case of HeP and DDECn and 6.86 \% by methods \bb{What is HeL?} HeL and DDECy in the favor of the later.
 
 \begin{figure}[hbt]
     \centering
@@ -94,10 +96,13 @@ exposure of buds signify better results.}
 \label{fig:my_figure5}
 \end{figure}
 
-DDECn and DDECy are representative of the selective pruning, where the
+The DDECn and DDECy methods are representative of the selective pruning, where the
 results of the first step represent the result of pruning by the
 automatic pruning systems currently used. The difference between the
 first and second step of DDECn and DDECy can be seen in Fig.~\ref{fig:my_figure6}.
+\bb{Can you add one sentence what one should see in that figure? 
+e.g., We can see that the number of branches is drastically diminished,
+but the overall height of the tree remains the same. Visually, the tree is less dense.}
 
 \begin{figure}[hbt]
     \centering
@@ -107,18 +112,24 @@ second pruning step, a) DDECn method, b) DDECy method}
     \label{fig:my_figure6}
 \end{figure}
 
-We also wanted to evaluate a long-term exposure to pruning and we were
-curious if the proposed automated tree pruning method is capable of tree
+\noindent\textbf{Long-term Pruning:} In another experiment, we evaluated a
+long-term exposure to pruning. We were curious if the proposed automated tree pruning method is 
+capable of tree
+\bb{training sounds too AI - how about "resulting"?}
 training into desired growing form without human intervention. We have
 simulated a row of five trees for six consecutive years. At the
-beginning of each year, the trees were pruned by DDECn method to shape
+beginning of each year, the trees were pruned by thee DDECn method to shape
 them into the Slender Spindle growing form. The starting cone height was
 1m and was linearly increased to 2.5m, which was the target height for
 the trees in the following three years. The opening angle was constant
-at 45° for the experiment duration. The initial value of the parameter
-\(s_{\mathrm{\max}}\) was set to 20 and was linearly increased to 70 in
+at $45^\circ$ for the experiment duration. The initial value of the parameter
+\(s_{\mathrm{\max}}=20\) and was linearly increased to \(s_{\mathrm{\max}}=70\) in
 the sixth year. The result of the experiment can be seen in Fig.~\ref{fig:my_figure7}.
 
+As the tree structure becomes more complex in time, the
+value of \(s_{\mathrm{\max}}\ \) should be increased. In our experiments
+we observed that \(s_{\mathrm{\max}}\leq{150}\) even
+for older trees provides reasonable results.
 \begin{figure}[hbt]
     \centering
     \includegraphics[width=3.84333in,height=4.66333in]{figs/image7.jpeg}
@@ -129,7 +140,3 @@ The purple color denotes removed branches}
 \end{figure}
 
 
-In general, as the tree structure becomes more complex in time, so the
-value of \(s_{\mathrm{\max}}\ \)has to be increased. In our experiments,
-we determined, that \(s_{\mathrm{\max}}\ \)should not exceed 150 even
-for older trees.
