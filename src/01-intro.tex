@@ -1,50 +1,45 @@
 \section{Introduction}
-Tree pruning is the process of removing branches usually with the main
-objective of allowing more light in the canopy. Old and dead branches are
-removed as well as living ones to balance the reproductive and
-vegetative growth in the fruit production. Pruning must be done carefully not to damage the tree, to prevent fungus infections on the cuts, and not to damage the tree in general. This makes pruning one of the most expensive and labor-intensive tasks that is responsible for approximately 20\% of the annual pre-harvest cost for crops like apples, cherries, and pears~\cite{karkee_identification_2014}. A large crew of trained seasonal workers is needed to accomplish this task each winter, following a set of predefined rules~\cite{akbar_novel_2016}. 
+The tree canopy pruning is the process of removing branches usually with the main
+objective of allowing more light in the canopy. Living branches are
+removed as well as old and dead ones to balance the reproductive and
+vegetative growth in the fruit production. Pruning must be done carefully not to damage the tree and to prevent fungus infections on the cuts. This makes pruning one of the most expensive and labor intensive tasks that is responsible for approximately 20\% of the annual pre-harvest cost for crops like apples, cherries, and pears~\cite{karkee_identification_2014}. A large crew of trained seasonal workers is needed to accomplish this task each winter, following a set of predefined rules~\cite{akbar_novel_2016}. 
 
-Extensive research has been done on how to automate the tree pruning process in order to reduce costs and/or demands for the skilled workforce~\cite{jensen_effects_1980,karkee_identification_2014,moore_mechanical_1958}
-on mass pruning by maintaining the specified distance from the tree
-canopy center with limited ability to ensure a high pruning quality. The
-fully automated results were not satisfying, as evidenced by the reduced quality and
+Extensive research has been done on how to automate the tree pruning process in order to reduce costs and/or demands for a skilled workforce~\cite{jensen_effects_1980,karkee_identification_2014,moore_mechanical_1958}. This prior research has resulted in the development of early mechanical systems for mass pruning which mainly maintain the specified distance of the tips of the branches from the tree canopy center. The
+fully automated results were not satisfactory, as evidenced by the reduced quality and
 yield of fruit~\cite{karkee_identification_2014}. 
 Another previous work used mobile platform for automated pruning of grape vines~\cite{botterill_robot_2017}. 
-Although the tree structure is more complex that those of
-grape vines, the essence of the approach to the pruning automation is
+Although the structure of tree is more complex that those of
+grape vines, the essence of the approach to pruning automation is
 similar. Both approaches create a 3D model of the plant by using computer vision
 that recognized the tree structure and a decision system determines which
-parts of the plant should be removed. Actual pruning is carried out by a six degree-of-freedom
-robotic arm. Both, the apple tree and vine pruning are carried out while
+parts of the plant should be removed. Actual pruning is carried out by a six degrees-of-freedom
+robotic arm. Both the apple tree and grape vine pruning are carried out while
 the plants are in a dormant state, and in both cases, a set of
-predefined pruning rules controls the pruning.
+predefined pruning rules controls the pruning, e.g. various criteria for removing branches based or length, or removing based on start and/or end point spacing.
 
-One of the bottlenecks of the current models is the 3D tree model
-reconstruction. Plant reconstruction is an open problem by itself
+The pruning is carried out in tho phases. First the 3D model of a tree is generated upon which the pruning rules are applied. Plant reconstruction is an hard problem by itself
 and many approaches have been introduced~\cite{livny_automatic_2010,xie_tree_2016,zhang_data-driven_2014}. 
 By applying the tree pruning rules on the generated tree 3D model the
 surplus branches are identified that have to be removed~\cite{akbar_novel_2016,elfiky_automation_2015,medeiros_modeling_2017}.
-As in pruning in general, these rules aim to increase the irradiance intake of the canopy,  to improve the tree health~\cite{simon_does_2006} and, in effect, fruit quality~\cite{bastias_light_2012}. 
-%The overall fruit quality is additionally enhanced by removing weak shoots, and thus controlling the tree size. \sk{It is true that the removing of weak shoots improves the fruit quality but tree size is not directly important for the yield quality. It is important however for easier manipulation of trees and protection against hail by kipping the tree under the hail nets} 
+The pruning rules aim to increase the irradiance intake of the canopy,  to improve the tree health~\cite{simon_does_2006} and, in effect, fruit quality~\cite{bastias_light_2012}. 
 
-One of the main problems of the previous work is that the trees are
+
+One of the main problems of the previous work is that the branches are
 removed by using fixed rules. The key observation of our work is
-that we can generate the rules for each plant individually by using mathematical optimization.
+that we can generate rules for each plant individually by using mathematical optimization.
 In this paper, we propose an alternative
-to the fixed set of pruning rules, by introducing a new two-step
-procedure, which combines the pruning approach of the first mechanical
+to the fixed set of pruning rules by introducing a new two-step
+procedure which combines the pruning approach of the existing mechanical
 pruning systems with the selective pruning. In the first step, the tree
 is trimmed according to a predefined template to maintain a desired
-tree height and the distance to its neighbors. The first step attempts to minimize mutual tree shading, bud drying by their abrasion, and mutual tree competition.
-In the second step, a mathematical optimization algorithm is used to determine which branch should be removed. Although many options exist, we use 
+tree height and distance to its neighbors. The first step attempts to minimize mutual tree shading, bud drying from abrasion, and mutual tree competition.
+In the second step, a mathematical optimization algorithm is used to determine which branches should be removed. Although many options exist, we use 
 the discrete differential evolution (DDE)~\cite{strnad_novel_2017}. 
 
-We have implemented our method in a software apple tree plant simulator EduAPPLE~\cite{kohek_eduapple:_2015}. We run several experiments,
-where we used two different pruning templates in the first
+We have implemented our method in the software apple tree plant simulator EduAPPLE~\cite{kohek_eduapple:_2015}. We ran several experiments using two different pruning templates in the first
 step of pruning, a cylinder and a cone. 
-We compared the light distribution inside the tree crown after pruning trees using the
+We compared the light distribution inside the tree canopy after pruning trees using the
 newly-developed method with those pruned by the expert.
-Our results show comparable levels of irradiance withing the canopy.
-Moreover, by using the proposed pruning method for several consecutive
-years, \bb{the trees avoid competing with their branches for the shared areas,} along
-with their height, which is essential in high-density orchards.
+Our results show comparable levels of irradiance within the canopy.
+Additionally, by using the proposed pruning method for several consecutive
+years, the space between trees was kept free of competing branches, along with preserving their height, which is essential in high-density orchards.

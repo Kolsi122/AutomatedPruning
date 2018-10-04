@@ -7,8 +7,7 @@ second step maximizes the bud irradiance. Our results show that our algorithm ac
 to the human pruning regarding the light
 distribution inside the tree crown. The pruning simulation of a group of
 trees for several consecutive years showed that the method could also be
-used for the tree \bb{training seems too AI - hwo about "shaping"?}
-training towards desirable growing form. Since DDE is
+used for the tree training towards desirable growing form. Since DDE is
 a stochastic method, the set of excess branches that have to be removed
 can vary from simulation to simulation. The solutions are not always
 equally successful with respect to tree light crown distribution, but
@@ -22,9 +21,8 @@ construction of the appropriate tree model from tree images. Successful
 algorithms of this kind are presented e.g, in~\cite{akbar_novel_2016,benes_visual_1997,de_reffye_plant_1988,palubicki_self-organizing_2009}.
 However, they are not directly compatible with the EduAPPLE tree growth model and a
 it would be important to bring these algorithms to a common ground, 
-for example by generating the same tree representation. 
-Since the proposed pruning method shows pruning results comparable to human
-expert, the construction of such an algorithm would be desirable. Some
+for example by generating the same tree representation. The construction of such representation would be even more desirable since the proposed pruning method shows pruning results comparable to human
+expert. Some
 work in this direction has already been done~\cite{kohek_estimation_2017}, 
 but it is too early to assess its efficiency.
 
@@ -35,17 +33,17 @@ long-term experiments whose goal was to improve yield quality as well as
 its quantity. Once the main parameters that influence the yield were
 determined, the pruning techniques have been developed that maximize the
 influence of those parameters and that is what the DDE objective
-function is trying to model. Since the light exposure is a critical
+function is trying to mimic. Since light exposure is a critical
 factor, the proposed method searched for the combination of cuts that
 maximize the light exposure. This resulted in the higher light
 distribution inside the tree crown. This distribution was also used for
 evaluation of tree pruning since the obtained tree forms cannot be
 compared directly. While the shapes of the trees in Fig.~\ref{fig:my_figure4} differ,
-their light distributions are comparable. The additional pruning
+their light distributions are comparable. An additional pruning
 benchmark is the number of internodes that corresponds to to the tree volume. 
 The amount of removed internodes represents  the
 pruning intensity and Fig.~\ref{fig:my_figure5}~b shows that the human expert preferred
-slightly less aggressive pruning than the DDE method. The pruning
+slightly less aggressive pruning than the proposed method. The pruning
 intensity by the proposed automated pruning is controlled by the
 relation between tree volume and the value of the \(s_{\mathrm{\max}}\)
 parameter. In order to preserve the tree pruning intensity, as the tree
@@ -53,5 +51,5 @@ is growing, the value of \(s_{\mathrm{\max}}\) should increase with the
 increasing number of internodes in the tree. In our experiments, \(s_{\mathrm{\max}}=20\)
 turned out to be the good initial value.
 
-\bb{There are many possible avenues for future work. As mentioned above, coupling our method with other 
-plant growth algorithms would be an important task to do. Another future work would be to use different optimization methods than the DDC. A long-term effect of growth should be also evaluated. It may be possible that the immediate value of bud illumination is not the most indicative factor and long-term plant health and development should be tested. Last but not least, our algorithm is a first step in an exciting direction of automated pruning. It would be interesting to automatically prune thousands of tree models and calculate statistics of the values we reported in Tables~\ref{tab:light} and~\ref{tab:inodes}. Although, we paid attention to report representative models, there may be a strong variation and statistics would provide a better representative value. }
+There are many possible avenues for future work. As mentioned above, coupling our method with other 
+plant growth algorithms would be an important task to do. Another future work would be to use different optimization methods than the DDE. The long-term effect of growth should also be evaluated. It may be possible that the immediate value of bud illumination is not the most indicative factor and long-term plant health and development should be tested. Last but not least, our algorithm is a first step in an exciting direction of automated pruning. It would be interesting to automatically prune thousands of tree models and calculate statistics of the values we reported in Tables~\ref{tab:light} and~\ref{tab:inodes}. Although, we paid attention to report representative models, there may be a strong variation and statistics would provide a better representative value.

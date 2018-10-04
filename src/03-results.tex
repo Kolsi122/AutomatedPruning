@@ -1,40 +1,41 @@
 
 \section{Results}
 We pruned a four years old virtual
-untrained tree (shown in Fig.~\ref{fig:my_figure4}) by using the proposed method and
-compared the results to the pruning performed by horticulture expert.
+untrained tree (shown in Fig.~\ref{fig:my_figure4}) by using the proposed method. The same tree was also pruned by horticulture expert and the results were compared.
 The tree training teaching environment EduAPPLE \cite{kohek_eduapple:_2015} was used for
 this purpose. The expert shaped the tree into two primary forms, a
 pyramidal growing form (denoted as HeP -- Human expert - Pyramidal), which is similar to a Slender Spindle, and a
-growing form Flatt (denoted as HeF -- Human expert - Flatt), suitable for the Fruiting Wall planting system. 
+Flatt growing form (denoted as HeF -- Human expert - Flatt), suitable for the Fruiting Wall planting system. 
 For the automated pruning, we used a cone with the height of \(3\)m and the
 opening angle of \(45{^\circ}\) (denoted as DDECn -- DDE method, Conical initial shape), and a cylinder with a height of
 3m and radius of 0.75 m (denoted as DDECy -- DDE method, Cylindrical initial shape). 
 In both cases, we set \(s_{\mathrm{\max}}=50\). 
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=5.4in]{figs/image4.jpeg}
+    \includegraphics[width=5.4in]{figs/Fig5.pdf}
     \caption{Comparison of pruning with the initial unpruned tree,
 tree pruned by a human expert in a pyramidal shape (HeP), automated
 pruning with initial cone shape (DDECn), pruning by human expert pruning
 in a plat plane (HeF), automated pruning with the use of cylindrical
-initial shape (DDECy). \bb{Can you also show here a top view of the trees?}}
+initial shape (DDECy).}
     \label{fig:my_figure4}
 \end{figure}
 
 \noindent\textbf{Light Distribution:} In all four cases, the light distribution inside the tree crown has
-improved (see Table~\ref{tab:light}) as compared to the unpruned tree (Fig.~\ref{fig:my_figure5}) \bb{with the average increase of 168\% of buds}. 
+improved (see Table~\ref{tab:light}) as compared to the unpruned tree (Fig.~\ref{fig:my_figure5}) with the average increase of 168\% of buds. 
 In particular, only 14.89 \% of buds receive more than 70 \% of available light in the unpruned trees, 
 while in the the human-pruned tree the amount of such buds increases to 26.80 \% (HeP) and to the 22.95 \% (HeF).
 The light distributions of the automated tree pruning are comparable with
 that of human expert (25,93 \% for DDECn and 24.18 \% for DDECy). 
 When comparing HeP to DDECn the result in the cases of human pruning is slightly better but in the case of HeF and DDECy the automated pruning achieved better result, although the difference in both casses is less than 1.3 \%.  
 \begin{table}[hbt]
+\caption{The percentage of buds receiving more than 70\% of light in an unpruned tree and after manual pruning by using HeP and HeF methods and our automatic pruning by using DDECn and DDECy. The improvement in all cases is in average of 168\%. }
+\label{tab:light}
 \begin{center}
 \begin{tabular}{ |l|c|c| } 
  \hline
- \textbf{Method} & \% of buds receiving                           & $\Delta$ to unpruned [\%] \\ 
-                 &  more than 70\% of light                       &  \\ 
+ \textbf{Method} & \textbf{\% of buds receiving}                           & $\mathbf{\Delta}$ \textbf{to unpruned [\%]} \\ 
+                 &  \textbf{more than 70\% of light}                       &  \\ 
  \hline
  \textbf{Unpruned}            & 14.89 & 0 \\ 
  \hline
@@ -46,12 +47,13 @@ When comparing HeP to DDECn the result in the cases of human pruning is slightly
  \hline
 \end{tabular}
 \end{center}
-\caption{The percentage of buds receiving more than 70\% of light in an unpruned tree and after manual pruning by using HeP and HeF methods and our automatic pruning by using DDECn and DDECy. The improvement in all cases is in average of 168\%. }
-\label{tab:light}
+
 \end{table}
 
 \noindent\textbf{Pruned Internodes:} The difference between the DDE and human pruning is also visible in the category of the internodes left in the tree after the pruning as shown in Table~\ref{tab:inodes}. The unpruned tree has 18,618 internodes. After manual pruning by using HeP the number decreased to 7,810 and manual pruning by using HeF decreased the number to 5,715. Automatic pruning provided smaller numbers. The DDECn algorithm pruned the tree to 5,714 and the DDECy to 4,867 nodes. The average number for manual pruning was 6,776 and for automatic 5,291.
 \begin{table}[hbt]
+\caption{The number of internodes on the tree in an unpruned tree and the comparison to the number of internodes after manual pruning by using HeP and HeF methods and our automatic pruning by using DDECn and DDECy. The average number of internodes is 6,033 that corresponds to 32\% of nodes of the unpruned tree. }
+\label{tab:inodes}
 \begin{center}
 \begin{tabular}{ |l|c|c| } 
  \hline
@@ -67,8 +69,6 @@ When comparing HeP to DDECn the result in the cases of human pruning is slightly
  \hline
 \end{tabular}
 \end{center}
-\caption{The number of internodes on the tree in an unpruned tree and the comparison to the number of internodes after manual pruning by using HeP and HeF methods and our automatic pruning by using DDECn and DDECy. The average number of internodes is 6,033 that corresponds to 32\% of nodes of the unpruned tree. }
-\label{tab:inodes}
 \end{table}
 
 By combining both results from Tables~\ref{tab:light} and~\ref{tab:inodes}, 
@@ -77,13 +77,6 @@ achieved similar bud light exposure with less biomass removed,
 which is desirable since the higher number of internodes with
 well-illuminated buds represent the higher potential for the yield of
 both increased quality and quantity. 
-
-\bb{Should we remove the paragraph below? Or move it to the paragraph that discusses the light?
-Now it is AFTER combining both results and I feel it does not fit here.}
-Another metric is to compare the
-percentage of buds in the tree crown receiving more than 40 \% of light
-available. In this case, the difference between automated and human
-pruning is 0.87 \%, in the case of HeP and DDECn and 6.86 \% by methods \bb{What is HeL?} HeL and DDECy in the favor of the later.
 
 \begin{figure}[hbt]
     \centering
@@ -99,26 +92,21 @@ exposure of buds signify better results.}
 The DDECn and DDECy methods are representative of the selective pruning, where the
 results of the first step represent the result of pruning by the
 automatic pruning systems currently used. The difference between the
-first and second step of DDECn and DDECy can be seen in Fig.~\ref{fig:my_figure6}.
-\bb{Can you add one sentence what one should see in that figure? 
-e.g., We can see that the number of branches is drastically diminished,
-but the overall height of the tree remains the same. Visually, the tree is less dense.}
+first and second step of DDECn and DDECy can be seen in Fig.~\ref{fig:my_figure6}. Visually, the trees after the second step are clearly less dense as the number of branches is drastically diminished,
+while the overall height of the tree remains the same.
 
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=5.4in]{figs/image6.jpeg}
-    \caption{Tree crown light distribution after the first and
-second pruning step, a) DDECn method, b) DDECy method}
+    \includegraphics[width=5.4in]{figs/Fig7.pdf}
+    \caption{Tree crown light distribution after the shaping and
+after the pruning step, a) DDECn method, b) DDECy method}
     \label{fig:my_figure6}
 \end{figure}
 
 \noindent\textbf{Long-term Pruning:} In another experiment, we evaluated a
-long-term exposure to pruning. We were curious if the proposed automated tree pruning method is 
-capable of tree
-\bb{training sounds too AI - how about "resulting"?}
-training into desired growing form without human intervention. We have
+long-term exposure to pruning. We were curious if the proposed automated tree pruning method is capable of tree training (i.e., getting the tree into desired growing form) without human intervention. We have
 simulated a row of five trees for six consecutive years. At the
-beginning of each year, the trees were pruned by thee DDECn method to shape
+beginning of each year, the trees were pruned by the DDECn method to shape
 them into the Slender Spindle growing form. The starting cone height was
 1m and was linearly increased to 2.5m, which was the target height for
 the trees in the following three years. The opening angle was constant
@@ -135,7 +123,7 @@ for older trees provides reasonable results.
     \includegraphics[width=3.84333in,height=4.66333in]{figs/image7.jpeg}
     \caption{Tree training of five apple trees into a Slender
 Spindle growing form for six consecutive years with the DDECn method.
-The purple color denotes removed branches}
+The purple color denotes the branches removed at the pruning}
     \label{fig:my_figure7}
 \end{figure}
 
