@@ -1,8 +1,7 @@
 %%%%%%%%%%%%%%%%
 \section{Materials and Methods}\label{sec:intro}
 %%%%%%%%%%%%%%%%
-Our main contribution is in not using predefined pruning rules.
-Instead, we use an objective function which includes the goals that are commonly considered by pruning; in particular maximization of the light intake by removing branches that cause shadowing and removing old and dead branches. This is also combined with the shaping of a tree to take either cylindrical or conical shape. 
+Our main contribution is in using optimization instead of predefined pruning rules. We use an objective function which includes the goals that are commonly considered by pruning; in particular maximization of the light intake by removing branches that cause shadowing and removing old and dead branches. This is also combined with the shaping of a tree to take either cylindrical or conical shape. 
 The objective function is optimized by using discrete differential evolution method~\cite{kohek_eduapple:_2015}, which is based on the
 concept of self-organizing trees of~\cite{palubicki_self-organizing_2009}.
 
@@ -12,26 +11,25 @@ concept of self-organizing trees of~\cite{palubicki_self-organizing_2009}.
 %%%%%%%%%%%%%%%%
 The tree models used in our approach are represented as a hierarchy of
 modules as shown in Fig.~\ref{fig:my_figure1}~a) which is a common approach used in many plant
-simulators such as \cite{de_reffye_plant_1988,palubicki_self-organizing_2009,pirk_plastic_2012,prusinkiewicz_development_1988,stava_inverse_2014}. 
+simulators such as \cite{de_reffye_plant_1988,kang2016imapple,palubicki_self-organizing_2009,pirk_plastic_2012,prusinkiewicz_development_1988,stava_inverse_2014}. 
 
 The point at which one or more leaves are attached to the stem is called a node and the part of the stem between two nodes is an internode. 
-The growth is controlled by apical meristem that is a region of dividing cells that responds by growth against gravity (gravitropism) and
-toward the incoming light (phototropism).
+The growth is controlled by apical meristem that is a region of dividing cells that responds by growth against gravity (gravitropism)~\cite{Berut201801895} and
+toward the incoming light (phototropism)~\cite{mech_visual_1996}.
 Depending on the plant species and environmental factors (light, temperature, nutrients, etc.), the plant produces lateral buds that are either dormant or active, and produces leaves with certain orientation (phylotaxis).
 An internode with attached leaves and a lateral bud is called a metamer and a sequence of metamers grown at a single spurt forms a shoot. 
 The shoot axis is produced by the terminal bud which is located at the end of the shoot.
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=4.5in]{figs/Fig1}
+    \includegraphics[width=\linewidth]{figs/Fig1}
     \caption{a) Plant modules of a self-organizing tree growth
 model and b) the shadow space of a tree in used tree growth model from~\cite{kohek_eduapple:_2015}.}
     \label{fig:my_figure1}
 \end{figure}
 
 Our approach uses the previously developed framework called EduAPPLE~\cite{kohek_eduapple:_2015},
-where a tree growth is driven by buds' illuminations~\cite{benes_efficient_1996,benes_visual_1997,mech_visual_1996} and a competitive process for growth resources~\cite{alsweis_modeling_2005,arvo_modeling_1988,palubicki_self-organizing_2009,runions_modeling_2007}, which leads to the self-organizing structure of the tree. 
-The tree attempts to maximize its branch mass by growth and light intake. Buds with higher irradiance produce new shoots that fill
-empty space. Buds with lower light intake produce quickly growing shoots
+where a tree growth is driven by buds' illuminations~\cite{benes_efficient_1996,benes_visual_1997,mech_visual_1996} and a competitive process for growth resources~\cite{alsweis_modeling_2005,arvo_modeling_1988,palubicki_self-organizing_2009,runions_modeling_2007}, which leads to the self-organizing structure of the tree~\cite{palubicki_self-organizing_2009}. 
+The tree attempts to maximize its branch mass by growth and light intake. Buds with higher irradiance produce new shoots that compete for space. Buds with lower light intake produce quickly growing shoots
 that attempt to get from shade (light seeking stage). Poorly illuminated buds do not create new shoots, become dormant, and can form new shoots later, when the conditions are more favorable. The key factor of this simulation is the calculation of the illumination of leaves that feed buds. Although inner reflection can be considered~\cite{soler_efficient_2003},
 the algorithms are usually time consuming, and the indirect light does
 not contribute significantly to growth, because major light intake is
@@ -72,9 +70,9 @@ where \(a\) \textgreater{} 0 and \(b\)\textgreater{} 0 are model
 parameters from \cite{palubicki_self-organizing_2009} and were set to \(a = 0.05\) and \(b = 2\).
 Total irradiance $Q$ of a given bud is then
 \begin{equation}
-  Q = max\{1 - s, 0\}\label{eqn:q}  
+  Q = max\{1 - s, 0\},\label{eqn:q}  
 \end{equation}
-where \(s\) is the cumulative contribution of all shadow volumes,
+where \(s\) is the cumulative contribution of all shadow volumes
 captured by the given bud.
 
 %%%%%%%%%%%%%%%%%%
@@ -105,7 +103,7 @@ x_{i,j}, & \mathrm{\text{otherwise}} \\
 \end{equation}
 where $x^{,}_{i,j}$ refers to the $j$-th element of the vector $\mathbf{x}_i$ and $C$ is the set of randomly selected crossover points.
 
-The \textbf{Selection operator} is then applied to construct the population for the next generation. The offspring replaces the parent if the fitness of the offspring surpasses that of the parent otherwise the parent survives to the next generation. This ensures that the average fitness of the population does not deteriorate.
+The \textbf{selection operator} is then applied to construct the population for the next generation. The offspring replaces the parent if the fitness of the offspring surpasses that of the parent otherwise the parent survives to the next generation. This ensures that the average fitness of the population does not deteriorate.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Discrete Differential Evolution}
@@ -130,7 +128,7 @@ distribution is calculated next, where the irradiance of each bud in the crown i
 the interval $[0, 1]$. The objective function 
 \emph{f}(\textbf{x}) is:
 \begin{equation}
- f\left( \mathbf{x} \right) = \frac{\sqrt{S_{\mathrm{\text{tree}}}}}{H}\sum_{i = 1}^{10}{i \times h_{i}}, 
+ f\left( \mathbf{x} \right) = \frac{\sqrt{S_{\mathrm{\text{tree}}}}}{H}\sum_{i = 1}^{10}{i  h_{i}}, 
 \end{equation}
 where \(S_{\mathrm{\text{tree}}}\) is the number of remaining internodes
 after pruning, \emph{H} is the total number of buds, and \(h_{i}\) is
@@ -208,10 +206,8 @@ rules, the human pruner strives to shape the tree into one of the
 well-defined growing forms. Those growing forms were developed over the
 years by the experts and gave the best fruiting results under certain
 growing conditions. In high density orchards, the most common tree
-forms are the Slender Spindle~\cite{weber_optimizing_2000}, and more recent, the Tall
-Spindle~\cite{robinson_vision_2013}. While the Slender Spindle is conically shaped, see Fig. \ref{fig:my_figure2a}a,
-the Tall Spindle resembles a cylinder (Fig. \ref{fig:my_figure2a}b). Tall spindle is very popular because it
-is suitable for mechanical pruning and formation of the Fruiting Wall~\cite{robinson_vision_2013}.
+forms are the Slender Spindle~\cite{weber_optimizing_2000}, and more recent, the Tall Spindle~\cite{robinson_vision_2013}. While the Slender Spindle is conically shaped (Fig. \ref{fig:my_figure2a}a),
+the Tall Spindle resembles a cylinder (Fig. \ref{fig:my_figure2a}b). Tall spindle is popular because it is suitable for mechanical pruning and formation of the Fruiting Wall~\cite{robinson_vision_2013}.
 
 \begin{figure}[hbt]
     \centering
@@ -221,7 +217,7 @@ is suitable for mechanical pruning and formation of the Fruiting Wall~\cite{robi
 \end{figure}
 
 Instead of changing the objective function, we propose adding a
-preprocessing level to the DDE method. We call this step Shaping  and
+preprocessing level to the DDE method. We call this step \textit{shaping} and
 by adding this the desired form, the tree height and neighboring
 distance can be controlled easily. We prune the trees to either a conical or a cylindrical shape
 with adjustable height and the base radius. After
@@ -230,7 +226,7 @@ used to optimize the light condition inside the tree crown. The entire
 tree pruning process is depicted in Fig.~\ref{fig:my_figure3}.
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=5.3in]{figs/Fig4.pdf}
+    \includegraphics[width=\linewidth]{figs/Fig4.pdf}
     \caption{Two-step virtual pruning process enables the control
 over tree height and neighboring distance. First, the tree is shaped
 into a cone or cylinder shape with adjustable size. In the second step

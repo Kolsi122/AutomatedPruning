@@ -1,8 +1,8 @@
 \section{Introduction}
 The tree canopy pruning is the process of removing branches usually with the main
-objective of allowing more light in the canopy. Living branches are
+objective of allowing more light in the tree crown. Living branches are
 removed as well as old and dead ones to balance the reproductive and
-vegetative growth in the fruit production. Pruning must be done carefully not to damage the tree and to prevent fungus infections on the cuts. This makes pruning one of the most expensive and labor intensive tasks that is responsible for approximately 20\% of the annual pre-harvest cost for crops like apples, cherries, and pears~\cite{karkee_identification_2014}. A large crew of trained seasonal workers is needed to accomplish this task each winter, following a set of predefined rules~\cite{akbar_novel_2016}. 
+vegetative growth in the wood and fruit production. Pruning must be done carefully not to damage the tree and to prevent fungus infections on the cuts. This makes pruning one of the most expensive and labor intensive tasks that is responsible for approximately 20\% of the annual pre-harvest cost for crops like apples, cherries, and pears~\cite{karkee_identification_2014}. A large crew of trained seasonal workers is needed to accomplish this task, following a set of predefined rules~\cite{akbar_novel_2016}. 
 
 Extensive research has been done on how to automate the tree pruning process in order to reduce costs and/or demands for a skilled workforce~\cite{jensen_effects_1980,karkee_identification_2014,moore_mechanical_1958}. This prior research has resulted in the development of early mechanical systems for mass pruning which mainly maintain the specified distance of the tips of the branches from the tree canopy center. The
 fully automated results were not satisfactory, as evidenced by the reduced quality and
@@ -15,10 +15,9 @@ that recognized the tree structure and a decision system determines which
 parts of the plant should be removed. Actual pruning is carried out by a six degrees-of-freedom
 robotic arm. Both the apple tree and grape vine pruning are carried out while
 the plants are in a dormant state, and in both cases, a set of
-predefined pruning rules controls the pruning, e.g. various criteria for removing branches based or length, or removing based on start and/or end point spacing.
+predefined pruning rules controls the pruning, e.g., various criteria for removing branches based or length, or removing based on start and/or end point spacing.
 
-The pruning is carried out in tho phases. First the 3D model of a tree is generated upon which the pruning rules are applied. Plant reconstruction is an hard problem by itself
-and many approaches have been introduced~\cite{livny_automatic_2010,xie_tree_2016,zhang_data-driven_2014}. 
+In those approaches, the pruning is carried out in two phases. First the 3D model of a tree is generated upon which the pruning rules are applied. Plant reconstruction is an hard problem by itself and many approaches have been introduced~\cite{livny_automatic_2010,xie_tree_2016,zhang_data-driven_2014}. 
 By applying the tree pruning rules on the generated tree 3D model the
 surplus branches are identified that have to be removed~\cite{akbar_novel_2016,elfiky_automation_2015,medeiros_modeling_2017}.
 The pruning rules aim to increase the irradiance intake of the canopy,  to improve the tree health~\cite{simon_does_2006} and, in effect, fruit quality~\cite{bastias_light_2012}. 
@@ -37,7 +36,7 @@ In the second step, a mathematical optimization algorithm is used to determine w
 the discrete differential evolution (DDE)~\cite{strnad_novel_2017}. 
 
 We have implemented our method in the software apple tree plant simulator EduAPPLE~\cite{kohek_eduapple:_2015}. We ran several experiments using two different pruning templates in the first
-step of pruning, a cylinder and a cone. 
+step of pruning: a cylinder and a cone. 
 We compared the light distribution inside the tree canopy after pruning trees using the
 newly-developed method with those pruned by the expert.
 Our results show comparable levels of irradiance within the canopy.
