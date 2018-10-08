@@ -19,7 +19,7 @@ toward the incoming light (phototropism)~\cite{mech_visual_1996}.
 Depending on the plant species and environmental factors (light, temperature, nutrients, etc.), the plant produces lateral buds that are either dormant or active, and produces leaves with certain orientation (phylotaxis).
 An internode with attached leaves and a lateral bud is called a metamer and a sequence of metamers grown at a single spurt forms a shoot. 
 The shoot axis is produced by the terminal bud which is located at the end of the shoot.
-\begin{figure}[hbt]
+\begin{figure}[!t]
     \centering
     \includegraphics[width=\linewidth]{figs/Fig1}
     \caption{a) Plant modules of a self-organizing tree growth
@@ -60,18 +60,22 @@ neighbors. Let \(d_{y}\) be the bud's vertical distance from the volume
 apex and \(d_{x,z}\) its horizontal distance from the volume axis, then
 the received shadow, originating from a given shadow volume is
 calculated by~\cite{strnad_novel_2017}:
+\begin{linenomath}
 \begin{equation}
 \Delta s = \left\{ \begin{matrix}
 \text{ab}^{- 0.8\left( d_{y} + d_{x,z} \right)}, & \mathrm{\text{if}}\ d_{x,z} < d_{y} \\
 0, & \mathrm{otherwise} \\
 \end{matrix}, \right.\    
 \end{equation}
+\end{linenomath}
 where \(a\) \textgreater{} 0 and \(b\)\textgreater{} 0 are model
 parameters from \cite{palubicki_self-organizing_2009} and were set to \(a = 0.05\) and \(b = 2\).
 Total irradiance $Q$ of a given bud is then
+\begin{linenomath}
 \begin{equation}
   Q = max\{1 - s, 0\},\label{eqn:q}  
 \end{equation}
+\end{linenomath}
 where \(s\) is the cumulative contribution of all shadow volumes
 captured by the given bud.
 
@@ -80,27 +84,33 @@ captured by the given bud.
 %%%%%%%%%%%%%%%%%%
 The Differential Evolution (DE) is a heuristic approach for minimizing possibly nonlinear and non-differential continuous objective function. Developed by Storm and Price~\cite{storn_differential_1997}, the method aims to optimize certain properties of a system pertinently choosing the system parameters, usually represented as a vector. 
 
-An objective function models the goals, while incorporating potential constraints. For the objective function 
+An objective function models the goals, while incorporating potential constraints. For the objective function
+\begin{linenomath}
 \begin{equation}
 f:X \subseteq\!R^{n}\rightarrow \!R,
 \end{equation}
+\end{linenomath}
 where $X\neq\emptyset$, the minimization problem is to find solution vector $\mathbf{s}\in X$, such that $f(\mathbf{s})\leq f(\mathbf{p}), \forall \mathbf{p}\in X$. 
 Inspired by genetic algorithms~\cite{davis1991handbook}, DE employs evolutionary operators like mutation, crossover, and selection, to minimize the objective function. The three operators are sequentially (in a fixed order) carried out in a loop, until an adequate fitness or number of iterations is reached.
 
 The DE produces a population of individuals and evaluates their fitness function (light intake in our case). The \textbf{mutation operator} produces a trial vector for each individual of the current population by mutating a target vector with a weighted differential. 
 For each parent $\mathbf{x}_{i}\in X$ three distinct individuals $\mathbf{x}_{i_1}$,  $\mathbf{x}_{i_2}$, and $\mathbf{x}_{i_3}$ are selected randomly from the population, $i \neq i_1 \neq i_2 \neq i_3$ and used to calculate the trial vector $\mathbf{u}_i$ as follows:
+\begin{linenomath}
 \begin{equation}
     \mathbf{u}_i = \mathbf{x}_{i_1}+\beta\times (\mathbf{x}_{i_2}-\mathbf{x}_{i_3})
 \end{equation}
+\end{linenomath}
 where $\beta \in (0, \infty )$ is called the differential weight. Together with the population $\beta$ can greatly impact the optimization performance. Both parameters, the differential weight and population size are selected by the user.
 
 The DE  \textbf{crossover operator} implements a discrete recombination of trial $\mathbf{u}_i$ and the parent $\mathbf{x}_i$ vectors, to produce offspring $\mathbf{x}^{,}_i$. The crossover operator is defined by ~\cite{engelbrecht2008computational}:
+\begin{linenomath}
 \begin{equation}
      x^{,}_{i,j} = \ \left\{ \begin{matrix}
 u_{i,j}, & \mathrm{\text{if}}\ j \in C \\
 x_{i,j}, & \mathrm{\text{otherwise}} \\
 \end{matrix} \right.\   
 \end{equation}
+\end{linenomath}
 where $x^{,}_{i,j}$ refers to the $j$-th element of the vector $\mathbf{x}_i$ and $C$ is the set of randomly selected crossover points.
 
 The \textbf{selection operator} is then applied to construct the population for the next generation. The offspring replaces the parent if the fitness of the offspring surpasses that of the parent otherwise the parent survives to the next generation. This ensures that the average fitness of the population does not deteriorate.
@@ -127,9 +137,11 @@ Tree crown light
 distribution is calculated next, where the irradiance of each bud in the crown is assigned to one of ten quantization classes of equal width of $0.1$ on
 the interval $[0, 1]$. The objective function 
 \emph{f}(\textbf{x}) is:
+\begin{linenomath}
 \begin{equation}
  f\left( \mathbf{x} \right) = \frac{\sqrt{S_{\mathrm{\text{tree}}}}}{H}\sum_{i = 1}^{10}{i  h_{i}}, 
 \end{equation}
+\end{linenomath}
 where \(S_{\mathrm{\text{tree}}}\) is the number of remaining internodes
 after pruning, \emph{H} is the total number of buds, and \(h_{i}\) is
 the number of buds in the \emph{i}-th class of light distribution.
@@ -153,7 +165,7 @@ as shown in Fig.~\ref{fig:my_figure2}. Our labeling allows for quick detection o
 redundant cuts. In a given example the later three internodes share the
 same prefix ``00'', which is the label of their predecessor and with
 removing it, all of its successors are removed as well.
-\begin{figure}[hbt]
+\begin{figure}[!t]
     \centering
     \includegraphics[width=3.3in]{figs/Fig2.pdf}
     \caption{Mapping of the solution vertex into the tree cutting
@@ -173,13 +185,14 @@ solution vector \(\mathbf{x}_{i}\ \)determines whether \emph{j}-th
 internode from the cut list will be selected as the cutting point or
 not. For that purpose the binary vector \(\mathbf{z}_{i}\) is
 constructed by thresholding:
+\begin{linenomath}
 \begin{equation}
     z_{i,j} = \ \left\{ \begin{matrix}
 0, & \mathrm{\text{if}}\ x_{i,j} < 0.5 \\
 1, & \mathrm{\text{otherwise.}} \\
 \end{matrix} \right.\
 \end{equation}
-
+\end{linenomath}
 If the number of cuts proposed by the vector \(\mathbf{z}_{i}\) violates
 the solution size constraints, the threshold is adjusted up or down
 until the constraints are met. 
